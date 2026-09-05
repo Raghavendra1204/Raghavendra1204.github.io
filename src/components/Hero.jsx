@@ -1,27 +1,64 @@
-import React from 'react';
-import { ArrowRight, Github, Linkedin, FileText, Terminal, Code2, Cpu, Database } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Github, Linkedin, FileText, Terminal, Code2, Cpu, Database, Camera, Sparkles } from 'lucide-react';
 
 export default function Hero() {
+  const [avatarError, setAvatarError] = useState(false);
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-tech-grid bg-radial-gradient border-b border-zinc-800/60">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        {/* Availability Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Open to Software & AI Engineering Roles & Internships</span>
+        
+        {/* Availability & Photography Quick Badge */}
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Open to Software & AI Engineering Roles & Internships</span>
+          </div>
+          <a
+            href="#hobbies"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 text-xs font-mono transition-colors"
+          >
+            <Camera className="w-3.5 h-3.5 text-emerald-400" />
+            <span>View Photographic Clicks</span>
+          </a>
         </div>
 
-        {/* Identity & Headline */}
-        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-zinc-100 mb-4 font-sans">
-          Raghavendra Waggar
-        </h1>
-        
-        <p className="text-xl sm:text-2xl font-semibold text-zinc-300 mb-6 max-w-3xl">
-          AI & Data Science Student building{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400">
-            AI-powered software systems.
-          </span>
-        </p>
+        {/* Hero Top: Profile Header with Avatar Container */}
+        <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-8 mb-6">
+          <div>
+            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-zinc-100 mb-3 font-sans">
+              Raghavendra Waggar
+            </h1>
+            
+            <p className="text-xl sm:text-2xl font-semibold text-zinc-300 max-w-2xl">
+              AI & Data Science Student building{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400">
+                AI-powered software systems.
+              </span>
+            </p>
+          </div>
+
+          {/* Profile Picture / Avatar Frame */}
+          <div className="relative shrink-0 self-start md:self-center">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl p-1 bg-gradient-to-b from-zinc-700 to-zinc-900 border border-zinc-700/80 shadow-2xl relative group overflow-hidden">
+              {!avatarError ? (
+                <img
+                  src="/photos/avatar.jpg"
+                  alt="Raghavendra Waggar"
+                  onError={() => setAvatarError(true)}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              ) : (
+                <div className="w-full h-full rounded-xl bg-zinc-950 flex flex-col items-center justify-center text-zinc-400 font-mono">
+                  <span className="text-2xl font-bold text-emerald-400 tracking-wider">RW</span>
+                  <span className="text-[10px] text-zinc-500 uppercase mt-0.5">Builder</span>
+                </div>
+              )}
+              {/* Online Indicator */}
+              <div className="absolute bottom-2 right-2 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-zinc-950 shadow-md"></div>
+            </div>
+          </div>
+        </div>
 
         {/* Supporting Narrative */}
         <p className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed mb-8">
@@ -62,7 +99,7 @@ export default function Hero() {
             <span>GitHub</span>
           </a>
           <a
-            href="https://www.linkedin.com/in/raghavendra-waggar"
+            href="https://www.linkedin.com/in/raghavendra-waggar-40b20a2b4/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 font-medium text-sm hover:border-zinc-700 hover:text-zinc-100 transition-all"

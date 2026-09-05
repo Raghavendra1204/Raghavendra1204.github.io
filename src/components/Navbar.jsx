@@ -18,6 +18,7 @@ export default function Navbar() {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Hackathons', href: '#experience' },
+    { name: 'Clicks & Hobbies', href: '#hobbies' },
     { name: 'GitHub', href: '#github' },
     { name: 'Resume', href: '#resume' },
   ];
@@ -69,7 +70,7 @@ export default function Navbar() {
             <Github className="w-4 h-4" />
           </a>
           <a
-            href="https://www.linkedin.com/in/raghavendra-waggar"
+            href="https://www.linkedin.com/in/raghavendra-waggar-40b20a2b4/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn Profile"
@@ -120,7 +121,7 @@ export default function Navbar() {
                 <Github className="w-4 h-4" />
               </a>
               <a
-                href="https://www.linkedin.com/in/raghavendra-waggar"
+                href="https://www.linkedin.com/in/raghavendra-waggar-40b20a2b4/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-zinc-400 hover:text-zinc-100"
