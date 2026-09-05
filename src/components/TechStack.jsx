@@ -21,7 +21,7 @@ export default function TechStack() {
 
   return (
     <section id="skills" className="py-20 border-b border-white/5">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
@@ -69,7 +69,7 @@ export default function TechStack() {
         </div>
 
         {/* Apple Bento Grid of Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredCategories.map((category) => {
             const IconComponent = categoryIcons[category.name] || Terminal;
             return (

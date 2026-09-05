@@ -32,7 +32,7 @@ export default function HobbiesAndPhotography() {
 
   return (
     <section id="hobbies" className="py-20 border-b border-white/5">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
@@ -63,7 +63,7 @@ export default function HobbiesAndPhotography() {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
             {photoGallery.map((item) => (
               <div
                 key={item.id}

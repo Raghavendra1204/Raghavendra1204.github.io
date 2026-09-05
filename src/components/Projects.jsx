@@ -7,7 +7,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-20 border-b border-white/5">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Section Header */}
         <div className="mb-10">
           <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">

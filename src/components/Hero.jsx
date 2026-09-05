@@ -6,17 +6,17 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-white/5">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         
         {/* Status Pill Badge (iOS HIG Style) */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full ios-pill text-xs text-[#86868B] mb-8">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ios-pill text-xs text-[#86868B] mb-8">
           <span className="w-2 h-2 rounded-full bg-[#0A84FF]"></span>
           <span>Open to Software & AI Engineering Roles & Internships</span>
         </div>
 
         {/* Hero Top: Identity & Avatar Card */}
-        <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-8 mb-8">
-          <div className="max-w-xl">
+        <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-8 mb-10">
+          <div className="max-w-3xl">
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white mb-3">
               Raghavendra Waggar
             </h1>
@@ -61,7 +61,7 @@ export default function Hero() {
         </div>
 
         {/* Developer Mindset Box (iOS Terminal Card) */}
-        <div className="mb-10 max-w-2xl rounded-2xl ios-glass border border-white/10 p-4 text-xs sm:text-sm shadow-inner">
+        <div className="mb-10 max-w-3xl rounded-2xl ios-glass border border-white/10 p-4 text-xs sm:text-sm shadow-inner">
           <div className="flex items-center gap-1.5 pb-2 mb-2 border-b border-white/5 text-[#86868B] text-[11px] font-mono">
             <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80"></div>
             <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80"></div>

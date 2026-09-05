@@ -6,7 +6,7 @@ export default function ResumeSection() {
 
   return (
     <section id="resume" className="py-20 border-b border-white/5">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Section Header */}
         <div className="mb-8">
           <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">

@@ -25,7 +25,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-3 left-0 right-0 z-40 px-4 sm:px-6 transition-all duration-300">
       <nav
-        className={`max-w-4xl mx-auto px-4 sm:px-6 py-2.5 rounded-full transition-all duration-300 ${
+        className={`max-w-6xl mx-auto px-4 sm:px-8 py-2.5 rounded-full transition-all duration-300 ${
           scrolled
             ? 'ios-glass-elevated shadow-2xl shadow-black/80 border border-white/15'
             : 'ios-glass border border-white/10 shadow-lg shadow-black/40'
