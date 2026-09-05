@@ -38,15 +38,15 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Profile Picture / Avatar Frame */}
-          <div className="relative shrink-0 self-start md:self-center">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl p-1 bg-gradient-to-b from-zinc-700 to-zinc-900 border border-zinc-700/80 shadow-2xl relative group overflow-hidden">
+          {/* Profile Picture / Avatar Frame with Caption */}
+          <div className="relative shrink-0 self-start md:self-center flex flex-col items-center group">
+            <div className="w-32 h-36 sm:w-36 sm:h-44 rounded-2xl p-1 bg-gradient-to-b from-zinc-700 to-zinc-900 border border-zinc-700/80 shadow-2xl relative overflow-hidden group-hover:border-emerald-500/50 transition-colors">
               {!avatarError ? (
                 <img
                   src="/photos/avatar.jpg"
                   alt="Raghavendra Waggar"
                   onError={() => setAvatarError(true)}
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-cover object-top rounded-xl"
                 />
               ) : (
                 <div className="w-full h-full rounded-xl bg-zinc-950 flex flex-col items-center justify-center text-zinc-400 font-mono">
@@ -56,6 +56,13 @@ export default function Hero() {
               )}
               {/* Online Indicator */}
               <div className="absolute bottom-2 right-2 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-zinc-950 shadow-md"></div>
+            </div>
+
+            {/* User-Requested Caption */}
+            <div className="mt-2.5 px-3 py-1 rounded-full bg-zinc-950/80 backdrop-blur-sm border border-zinc-800 text-[11px] font-mono text-zinc-400 text-center tracking-tight shadow-sm">
+              <span className="text-emerald-400 mr-1">“</span>
+              <span>most professional picture yet far</span>
+              <span className="text-emerald-400 ml-1">”</span>
             </div>
           </div>
         </div>

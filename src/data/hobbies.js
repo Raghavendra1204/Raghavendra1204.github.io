@@ -90,4 +90,24 @@ export const photoGallery = [
       "A contemplative macaque perched calmly on a low tree limb, framed by sunlit yellow and green foliage.",
     technicalNote: "Natural daylight, environmental wildlife portrait, warm color grade.",
   },
+  {
+    id: "powerplant",
+    src: "/photos/powerplant.jpg",
+    title: "Industrial Horizon",
+    location: "River Basin",
+    category: "Industrial & Mood",
+    caption:
+      "Thermal cooling towers and exhaust chimneys across a broad river, viewed through rain-streaked glass under dramatic overcast skies.",
+    technicalNote: "Monsoon atmospheric mood, water droplets on lens plane, industrial symmetry.",
+  },
+  {
+    id: "clouds",
+    src: "/photos/clouds.jpg",
+    title: "Azure Expanse",
+    location: "Open Skies",
+    category: "Atmosphere & Light",
+    caption:
+      "Vivid cobalt blue skies populated by bright cumulus formations, capturing open perspective and clean natural light.",
+    technicalNote: "High dynamic range, deep polarization, cloud texture and depth.",
+  },
 ];
