@@ -20,7 +20,7 @@ export default function TechStack() {
       : skillCategories.filter((c) => c.name === activeTab);
 
   return (
-    <section id="skills" className="py-20 border-b border-zinc-800/60 bg-[#090a0f]/80">
+    <section id="skills" className="py-20 border-b border-zinc-800/60 bg-[#090a0f]/60 backdrop-blur-[1px]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-wider mb-2">

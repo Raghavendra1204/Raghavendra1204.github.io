@@ -5,7 +5,7 @@ export default function Hero() {
   const [avatarError, setAvatarError] = useState(false);
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-tech-grid bg-radial-gradient border-b border-zinc-800/60">
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-zinc-800/60">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         
         {/* Availability & Photography Quick Badge */}

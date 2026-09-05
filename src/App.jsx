@@ -12,19 +12,26 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#090a0f] text-zinc-100 flex flex-col selection:bg-emerald-500/20 selection:text-emerald-300">
-      <Navbar />
-      <main className="flex-grow">
-        <Hero />
-        <About />
-        <TechStack />
-        <Projects />
-        <Experience />
-        <HobbiesAndPhotography />
-        <GitHubActivity />
-        <ResumeSection />
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-[#090a0f] text-zinc-100 flex flex-col relative selection:bg-emerald-500/20 selection:text-emerald-300">
+      {/* Background Star Canvas and Contrast Layer */}
+      <div className="stars-bg-canvas" />
+      <div className="stars-bg-overlay" />
+
+      {/* Main Content Layer */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">
+          <Hero />
+          <About />
+          <TechStack />
+          <Projects />
+          <Experience />
+          <HobbiesAndPhotography />
+          <GitHubActivity />
+          <ResumeSection />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
