@@ -8,26 +8,43 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#090a0f',
-        surface: '#11131a',
-        'surface-elevated': '#181b24',
-        border: '#232733',
-        'border-focus': '#3b4254',
-        accent: {
-          DEFAULT: '#10b981', // subtle emerald
-          hover: '#059669',
-          muted: 'rgba(16, 185, 129, 0.12)',
+        background: '#000000',
+        surface: '#0d0e12',
+        'surface-elevated': '#16181f',
+        border: 'rgba(255, 255, 255, 0.08)',
+        'border-focus': 'rgba(255, 255, 255, 0.22)',
+        apple: {
+          blue: '#0A84FF',
+          'blue-hover': '#0071E3',
+          gray: '#86868B',
+          'gray-light': '#A1A1A6',
+          dark: '#000000',
+          card: 'rgba(255, 255, 255, 0.04)',
+          'card-hover': 'rgba(255, 255, 255, 0.07)',
+          border: 'rgba(255, 255, 255, 0.1)',
         },
-        tech: {
-          blue: '#38bdf8',
-          purple: '#a855f7',
-          emerald: '#34d399',
-          amber: '#fbbf24',
-        }
+      },
+      borderRadius: {
+        'ios': '20px',
+        'ios-lg': '28px',
+        'ios-xl': '36px',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"SF Pro Display"',
+          '"SF Pro Text"',
+          '"Helvetica Neue"',
+          'sans-serif',
+        ],
+        mono: [
+          '"SF Mono"',
+          'ui-monospace',
+          'Menlo',
+          'Consolas',
+          'monospace',
+        ],
       },
     },
   },

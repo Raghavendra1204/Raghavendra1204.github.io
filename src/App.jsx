@@ -9,13 +9,16 @@ import HobbiesAndPhotography from './components/HobbiesAndPhotography';
 import GitHubActivity from './components/GitHubActivity';
 import ResumeSection from './components/ResumeSection';
 import Footer from './components/Footer';
+import BumblebeeWelcome from './components/BumblebeeWelcome';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#090a0f] text-zinc-100 flex flex-col relative selection:bg-emerald-500/20 selection:text-emerald-300">
-      {/* Background Star Canvas and Contrast Layer */}
-      <div className="stars-bg-canvas" />
-      <div className="stars-bg-overlay" />
+    <div className="min-h-screen bg-black text-[#F5F5F7] flex flex-col relative selection:bg-[#0A84FF]/25 selection:text-white">
+      {/* Apple Ambient Layer */}
+      <div className="apple-bg-ambient" />
+
+      {/* Bumblebee Transformer Welcome Experience */}
+      <BumblebeeWelcome />
 
       {/* Main Content Layer */}
       <div className="relative z-10 flex flex-col min-h-screen">

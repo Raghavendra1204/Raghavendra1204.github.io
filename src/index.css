@@ -4,52 +4,60 @@
 
 @layer base {
   body {
-    background-color: #090a0f;
-    color: #e4e4e7;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #000000;
+    color: #F5F5F7;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", system-ui, sans-serif;
+    letter-spacing: -0.015em;
   }
 }
 
-/* Fixed Stars Background with Ambient Gradient */
-.stars-bg-canvas {
+/* Apple iOS System Ambient Glow (Subtle, non-neon) */
+.apple-bg-ambient {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/stars-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: 
+    radial-gradient(circle at 50% -10%, rgba(10, 132, 255, 0.07) 0%, transparent 60%),
+    radial-gradient(circle at 90% 40%, rgba(255, 255, 255, 0.015) 0%, transparent 40%),
+    #000000;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.65;
 }
 
-.stars-bg-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 20%, rgba(9, 10, 15, 0.4) 0%, rgba(9, 10, 15, 0.85) 80%, #090a0f 100%);
-  z-index: 1;
-  pointer-events: none;
+/* Apple Frosted Glass / Translucent Materials */
+.ios-glass {
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Custom subtle scrollbar */
+.ios-glass-elevated {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.ios-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Apple Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090a0f;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #232733;
-  border-radius: 3px;
+  background: #2C2C2E;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b4254;
+  background: #3A3A3C;
 }
