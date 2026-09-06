@@ -59,7 +59,7 @@ export default function GitHubActivity() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
             <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
-              06 // Open Source
+               Open Source
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               GitHub activity & repositories.

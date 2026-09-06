@@ -10,7 +10,7 @@ export default function ResumeSection() {
         {/* Section Header */}
         <div className="mb-8">
           <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
-            07 // Curriculum Vitae
+             Curriculum Vitae
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
             Resume & credentials.

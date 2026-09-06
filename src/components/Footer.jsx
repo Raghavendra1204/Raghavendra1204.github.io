@@ -63,7 +63,7 @@ export default function Footer() {
 
         {/* Apple Footer Colophon */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#86868B] gap-3">
-          <p>© {new Date().getFullYear()} Raghavendra Waggar. Engineered with React, Vite & Tailwind CSS.</p>
+          <p>© {new Date().getFullYear()} Raghavendra Waggar.</p>
           <p>
             Hosted statically on{' '}
             <a

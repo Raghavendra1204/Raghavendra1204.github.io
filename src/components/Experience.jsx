@@ -10,13 +10,13 @@ export default function Experience() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
             <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
-              04 // Engineering Sprints
+               Engineering Sprints
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Hackathons & competitive builds.
             </h2>
             <p className="text-xs sm:text-sm text-[#86868B] mt-1">
-              Real problem-solving under real pressure—deconstructing complex problem statements into functional architectures.
+              Real problem-solving under real pressure deconstructing complex problem statements into functional architectures.
             </p>
           </div>
           <div className="text-xs font-mono text-[#86868B] ios-pill px-3 py-1 rounded-full self-start md:self-auto">

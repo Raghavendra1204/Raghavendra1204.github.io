@@ -83,7 +83,7 @@ export default function About() {
               </div>
               <h3 className="text-sm font-semibold text-white mb-1">Practical Product Value</h3>
               <p className="text-xs text-[#86868B] leading-relaxed">
-                Prioritizing real user utility—verifying civic reports, automating placement drives, and generating structured executive reports.
+                Prioritizing real user utility verifying civic reports, automating placement drives, and generating structured executive reports.
               </p>
             </div>
           </div>

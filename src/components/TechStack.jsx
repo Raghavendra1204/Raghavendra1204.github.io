@@ -26,7 +26,7 @@ export default function TechStack() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
             <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
-              02 // Technical Stack
+               Technical Stack
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Technologies I work with.

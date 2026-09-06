@@ -11,7 +11,7 @@ export default function Projects() {
         {/* Section Header */}
         <div className="mb-10">
           <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
-            03 // Featured Projects
+             Featured Projects
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
             Systems, civic tech & AI platforms.
