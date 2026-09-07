@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { projects } from '../data/projects';
+import TechIcon from './TechIcon';
 import { ExternalLink, Github, ChevronRight, CheckCircle2, X } from 'lucide-react';
 
 export default function Projects() {
@@ -59,14 +60,15 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Tech Pills */}
-                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/5">
+                {/* Horizontal Tech Stack Badges with Technology Icons */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-white/5">
                   {proj.tech.map((t) => (
                     <span
                       key={t}
-                      className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-white/5 text-[#86868B] border border-white/5"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-full bg-black/40 text-[#E5E5EA] border border-white/5 hover:border-white/15 transition-colors"
                     >
-                      {t}
+                      <TechIcon name={t} className="w-3.5 h-3.5 shrink-0" />
+                      <span>{t}</span>
                     </span>
                   ))}
                 </div>
@@ -162,9 +164,10 @@ export default function Projects() {
                   {selectedProject.tech.map((t) => (
                     <span
                       key={t}
-                      className="text-xs font-mono px-3 py-1 rounded-full ios-pill text-[#F5F5F7]"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-full ios-pill text-[#F5F5F7]"
                     >
-                      {t}
+                      <TechIcon name={t} className="w-3.5 h-3.5 shrink-0" />
+                      <span>{t}</span>
                     </span>
                   ))}
                 </div>

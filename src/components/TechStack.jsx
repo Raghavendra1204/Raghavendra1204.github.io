@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { skillCategories } from '../data/skills';
+import TechIcon from './TechIcon';
 import { Terminal, Code, Cpu, Server, Layout, Database, Wrench } from 'lucide-react';
 
 const categoryIcons = {
@@ -26,18 +27,18 @@ export default function TechStack() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
             <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
-               Technical Stack
+              Technical Stack
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Technologies I work with.
+              Technologies & Languages I Work With.
             </h2>
             <p className="text-xs sm:text-sm text-[#86868B] mt-1">
-              Grounded in systems fundamentals, backend architecture, and practical AI systems.
+              Organized horizontally by engineering domain, paired with systems context and active toolchains.
             </p>
           </div>
-          
+
           <div className="text-xs font-mono text-[#86868B] ios-pill px-3 py-1 rounded-full self-start md:self-auto">
-            Framing: <span className="text-white">Working with</span>
+            Framing: <span className="text-white">Active Toolset</span>
           </div>
         </div>
 
@@ -51,7 +52,7 @@ export default function TechStack() {
                 : 'text-[#86868B] hover:text-white'
             }`}
           >
-            All ({skillCategories.length})
+            All Categories ({skillCategories.length})
           </button>
           {skillCategories.map((cat) => (
             <button
@@ -68,37 +69,57 @@ export default function TechStack() {
           ))}
         </div>
 
-        {/* Apple Bento Grid of Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {/* Horizontal Category Shelves */}
+        <div className="space-y-6">
           {filteredCategories.map((category) => {
             const IconComponent = categoryIcons[category.name] || Terminal;
             return (
               <div
                 key={category.name}
-                className="p-5 rounded-3xl ios-glass border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between"
+                className="p-6 rounded-3xl ios-glass border border-white/10 hover:border-white/20 transition-all"
               >
-                <div>
-                  <div className="flex items-center gap-2.5 mb-1.5">
-                    <div className="w-7 h-7 rounded-xl bg-white/10 flex items-center justify-center text-[#0A84FF]">
-                      <IconComponent className="w-3.5 h-3.5" />
+                {/* Horizontal Category Header */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-white/5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center text-[#0A84FF] border border-white/10 shadow-sm shrink-0">
+                      <IconComponent className="w-4 h-4" />
                     </div>
-                    <h3 className="text-sm font-semibold text-white">{category.name}</h3>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-bold text-white tracking-tight">
+                          {category.name}
+                        </h3>
+                        <span className="text-[10px] font-mono text-[#86868B] px-2 py-0.5 rounded-full bg-white/5 border border-white/5">
+                          {category.skills.length} technologies
+                        </span>
+                      </div>
+                      <p className="text-xs text-[#86868B] mt-0.5">
+                        {category.description}
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-[#86868B] mb-4">{category.description}</p>
                 </div>
 
-                <div className="space-y-1.5">
+                {/* Horizontal Flow of Technologies with Icons */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
                   {category.skills.map((skill) => (
                     <div
                       key={skill.name}
-                      className="p-2 rounded-xl bg-black/40 border border-white/5 flex items-start justify-between gap-2"
+                      className="p-3 rounded-2xl bg-black/40 hover:bg-white/[0.05] border border-white/5 hover:border-white/15 transition-all flex items-center gap-3 group"
                     >
-                      <span className="text-xs font-medium text-[#F5F5F7]">
-                        {skill.name}
-                      </span>
-                      <span className="text-[11px] text-[#86868B] text-right max-w-[60%]">
-                        {skill.context}
-                      </span>
+                      <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                        <TechIcon name={skill.name} className="w-4 h-4" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-1 mb-0.5">
+                          <span className="text-xs font-semibold text-[#F5F5F7] tracking-tight truncate">
+                            {skill.name}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-[#86868B] leading-snug line-clamp-1 group-hover:text-[#A1A1A6] transition-colors">
+                          {skill.context}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
