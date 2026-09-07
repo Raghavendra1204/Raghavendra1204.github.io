@@ -154,45 +154,46 @@ export const projects = [
   {
     id: "hindi-mate",
     title: "HindiMate",
-    subtitle: "AI Language Learning Platform",
-    category: "Language Learning / EdTech",
-    tag: "SkillsBuild Capstone",
-    status: "Completed Capstone",
+    subtitle: "Interactive Hindi Learning Platform with VaaniAI & OCR",
+    category: "Language Learning / AI & EdTech",
+    tag: "Deployed & Live on AWS",
+    status: "Deployed & Live on AWS EC2 (IBM SkillsBuild Capstone)",
     tagColor: "amber",
-    featured: false,
+    featured: true,
     description:
-      "Interactive Hindi language learning application with AI-generated pedagogical modules, real-time Google TTS pronunciation, and grammar exercises.",
+      "Interactive Hindi learning platform developed under the IBM SkillsBuild Internship Program by a team of seven members, combining structured lessons, OCR grammar workflows, Gemini AI (VaaniAI), and Web Speech API.",
     shortDescription:
-      "An interactive Hindi language acquisition application combining AI-generated pedagogical modules with real-time text-to-speech pronunciation.",
+      "An interactive Hindi language acquisition platform combining structured lessons with OCR-extracted grammar resources, Google Gemini AI (VaaniAI), and browser-based speech synthesis.",
     problem:
-      "Traditional language apps present static, repetitive exercises and often lack natural native audio feedback for non-Latin scripts like Devanagari.",
+      "Traditional language learning platforms present static study material with repetitive drills and lack interactive pronunciation feedback and dynamic resource ingestion for non-Latin scripts like Devanagari.",
     keyFeatures: [
-      "Interactive Hindi script module covering Devanagari vowels, consonants, and character conjuncts",
-      "Google Text-to-Speech (TTS) integration providing instant auditory feedback at customizable speeds",
-      "Dynamic vocabulary generator utilizing Gemini API to create real-world situational conversations",
-      "Contextual grammar drills with real-time feedback and explanation of sentence formation"
+      "Step-by-step Hindi curriculum: vowels, consonants, matras, vocabulary, greetings, and grammar",
+      "OCR-based learning workflow extracting and structuring existing PDF grammar textbooks into web exercises",
+      "Google Gemini API integration (VaaniAI) for adaptive conversational drills and structured pedagogy",
+      "Web Speech API providing native browser-based text-to-speech pronunciation for Hindi characters and phrases",
+      "Containerized deployment using Docker and Nginx reverse proxy hosted on AWS EC2"
     ],
-    tech: ["React", "FastAPI", "Google TTS", "Google Gemini API", "Tailwind CSS"],
+    tech: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Google Gemini API", "Web Speech API", "OCR", "Docker", "Nginx", "AWS EC2", "React Router"],
     myRole:
-      "Developed the interactive frontend learning interface, hooked up Google Text-to-Speech audio endpoints, and integrated the Gemini API conversational engine.",
+      "Developed collaboratively by seven members (Yash, Nischay, Utkarsh, Shaurya, Tenzing, and Raghavendra). My primary contributions focused on system architecture, Docker and version management, AWS deployment, OCR integration, and text-to-speech.",
     outcome:
-      "Delivered as the final capstone project for the IBM SkillsBuild India program, achieving full marks on technical evaluation.",
-    liveUrl: null,
+      "Successfully containerized with Docker, deployed to AWS EC2 (http://13.204.64.226), and evaluated as the final capstone project under the IBM SkillsBuild Internship Program.",
+    liveUrl: "http://13.204.64.226",
     githubUrl: "https://github.com/Raghavendra1204/Hindimate",
     reportUrl: null,
     futureImprovements:
-      "Add speech-to-text pronunciation assessment to evaluate user vocal pitch and pronunciation accuracy.",
+      "Introduce speech-to-text pronunciation assessment to evaluate user vocal pitch and accuracy in real time.",
     screenshots: [
       {
         id: "script-grid",
         title: "Devanagari Script & Audio Grid",
-        caption: "Interactive phonetics board with Google TTS native pronunciation playback",
+        caption: "Interactive phonetics board with Web Speech API native pronunciation playback",
         mockupType: "hindimate-script"
       },
       {
         id: "conversation-drill",
-        title: "AI Situational Conversations",
-        caption: "Dynamic conversational scenario generator adapting difficulty to user progression",
+        title: "VaaniAI Conversational Engine",
+        caption: "Adaptive Hindi dialogue simulation utilizing Google Gemini API for structured pedagogical feedback",
         mockupType: "hindimate-chat"
       }
     ]

@@ -430,6 +430,68 @@ export default function TechIcon({ name = '', className = 'w-4 h-4' }) {
     return <Binary className={`${className} text-[#F59E0B]`} />;
   }
 
+  // 35. AWS / AWS EC2
+  if (norm.includes('aws') || norm.includes('ec2')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="4" width="20" height="16" rx="4" fill="#FF9900" fillOpacity="0.15" stroke="#FF9900" strokeWidth="1.5" />
+        <text x="12" y="15" textAnchor="middle" fill="#FF9900" fontSize="8" fontWeight="bold" fontFamily="system-ui">
+          AWS
+        </text>
+      </svg>
+    );
+  }
+
+  // 36. Nginx
+  if (norm.includes('nginx')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <path d="M12 2l9.5 5.5v11L12 24l-9.5-5.5v-11L12 2z" fill="#009639" fillOpacity="0.2" stroke="#009639" strokeWidth="1.5"/>
+        <path d="M8 7v10l8-10v10" stroke="#009639" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+  }
+
+  // 37. OCR
+  if (norm.includes('ocr') || norm.includes('optical character')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#38BDF8" strokeWidth="1.8">
+        <path d="M4 7V4h3M17 4h3v3M4 17v3h3M17 20h3v-3" strokeLinecap="round"/>
+        <text x="12" y="15" textAnchor="middle" fill="#38BDF8" fontSize="8" fontWeight="bold" stroke="none">OCR</text>
+      </svg>
+    );
+  }
+
+  // 38. Vite
+  if (norm.includes('vite')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <path d="M20.8 3.8L12.7 21a.8.8 0 0 1-1.4 0L3.2 3.8a.8.8 0 0 1 .9-1.1l7.6 1.7a.8.8 0 0 0 .3 0l7.6-1.7a.8.8 0 0 1 .9 1.1z" fill="url(#vite-grad)" />
+        <path d="M12.5 3.5l-3.3 6.6 3.6-.5-2.5 6.7 6-8-3.7.5 2-5.3h-2.1z" fill="#FFD438" />
+        <defs>
+          <linearGradient id="vite-grad" x1="3" y1="3" x2="21" y2="21">
+            <stop stopColor="#41D1FF" />
+            <stop offset="1" stopColor="#BD34FE" />
+          </linearGradient>
+        </defs>
+      </svg>
+    );
+  }
+
+  // 39. Framer Motion
+  if (norm.includes('framer')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <path d="M4 2h16v8h-8zM4 10h8l8 8H4zM4 18h8v6z" fill="#0055FF" />
+      </svg>
+    );
+  }
+
+  // 40. Web Speech API
+  if (norm.includes('web speech') || norm.includes('speech api')) {
+    return <Volume2 className={`${className} text-[#4285F4]`} />;
+  }
+
   // Default fallback
   return <Code className={`${className} text-[#86868B]`} />;
 }
