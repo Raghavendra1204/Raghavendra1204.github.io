@@ -3,18 +3,21 @@ import Navbar from './components/Navbar';
 import About from './components/About';
 import TechStack from './components/TechStack';
 import Projects from './components/Projects';
+import ProjectDetailPage from './components/ProjectDetailPage';
 import Experience from './components/Experience';
 import HobbiesAndPhotography from './components/HobbiesAndPhotography';
 import GitHubActivity from './components/GitHubActivity';
 import ResumeSection from './components/ResumeSection';
 import SectionLoader from './components/SectionLoader';
 import Footer from './components/Footer';
-import { ChevronRight, ArrowLeft, Sparkles, Layers } from 'lucide-react';
+import { projects } from './data/projects';
+import { ChevronRight, ArrowLeft, Layers } from 'lucide-react';
 
 const VIEW_TITLES = {
   about: { label: 'About & Philosophy', tag: 'Identity, Mindset & Engineering Philosophy' },
   skills: { label: 'Technical Stack', tag: 'Languages, Frameworks & ML' },
-  projects: { label: 'Featured Projects', tag: 'Systems, Civic Tech & AI Platforms' },
+  projects: { label: 'Featured Projects', tag: 'List of Projects (4)' },
+  'project-detail': { label: 'Project Details', tag: 'Full Architecture, Tour & Reports' },
   experience: { label: 'Hackathons & Sprints', tag: 'Competitive Builds & Results' },
   hobbies: { label: 'Visual Journal & Interests', tag: 'Photography & Creative Pursuits' },
   github: { label: 'Open Source Repositories', tag: 'Live GitHub Activity' },
@@ -23,6 +26,7 @@ const VIEW_TITLES = {
 
 export default function App() {
   const [activeView, setActiveView] = useState('about');
+  const [selectedProject, setSelectedProject] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loadingTag, setLoadingTag] = useState('');
 
@@ -30,6 +34,16 @@ export default function App() {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace('#', '').toLowerCase();
+      if (hash.startsWith('project/')) {
+        const projId = hash.replace('project/', '');
+        const found = projects.find((p) => p.id === projId || p.id === 'jaansathi' && projId === 'jansathi');
+        if (found) {
+          setSelectedProject(found);
+          setActiveView('project-detail');
+          return;
+        }
+      }
+
       if (hash && VIEW_TITLES[hash]) {
         setActiveView(hash);
       } else {
@@ -43,12 +57,11 @@ export default function App() {
   }, []);
 
   const handleNavigate = (targetView) => {
-    if (targetView === activeView) return;
+    if (targetView === activeView && targetView !== 'projects') return;
 
     setLoadingTag(VIEW_TITLES[targetView]?.label || 'Section');
     setLoading(true);
 
-    // Smooth window switch transition delay (Apple style micro-loading)
     setTimeout(() => {
       setActiveView(targetView);
       if (targetView === 'about') {
@@ -58,7 +71,20 @@ export default function App() {
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setLoading(false);
-    }, 240);
+    }, 200);
+  };
+
+  const handleSelectProject = (project) => {
+    setSelectedProject(project);
+    setLoadingTag(project.title);
+    setLoading(true);
+
+    setTimeout(() => {
+      setActiveView('project-detail');
+      window.history.pushState(null, '', `#project/${project.id}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setLoading(false);
+    }, 200);
   };
 
   const renderActiveWindow = () => {
@@ -70,7 +96,14 @@ export default function App() {
       case 'skills':
         return <TechStack />;
       case 'projects':
-        return <Projects />;
+        return <Projects onSelectProject={handleSelectProject} />;
+      case 'project-detail':
+        return (
+          <ProjectDetailPage
+            project={selectedProject || projects[0]}
+            onBack={() => handleNavigate('projects')}
+          />
+        );
       case 'experience':
         return <Experience />;
       case 'hobbies':
@@ -93,7 +126,10 @@ export default function App() {
 
       {/* Main Content Layer */}
       <div className="relative z-10 flex flex-col min-h-screen">
-        <Navbar activeView={activeView} onNavigate={handleNavigate} />
+        <Navbar
+          activeView={activeView === 'project-detail' ? 'projects' : activeView}
+          onNavigate={handleNavigate}
+        />
 
         <main className="flex-grow pt-4">
           {/* Sub-view Breadcrumb Header when viewing non-About sections */}
@@ -108,15 +144,38 @@ export default function App() {
                     <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
                     <span>About (Home)</span>
                   </button>
-                  <ChevronRight className="w-3 h-3 text-[#86868B]" />
-                  <span className="text-[#0A84FF] font-medium uppercase tracking-wider">
-                    {VIEW_TITLES[activeView]?.label}
-                  </span>
+
+                  {activeView === 'project-detail' ? (
+                    <>
+                      <ChevronRight className="w-3 h-3 text-[#86868B]" />
+                      <button
+                        onClick={() => handleNavigate('projects')}
+                        className="text-[#86868B] hover:text-white transition-colors"
+                      >
+                        Projects
+                      </button>
+                      <ChevronRight className="w-3 h-3 text-[#86868B]" />
+                      <span className="text-[#0A84FF] font-medium tracking-wider">
+                        {selectedProject?.title || 'Project Detail'}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <ChevronRight className="w-3 h-3 text-[#86868B]" />
+                      <span className="text-[#0A84FF] font-medium uppercase tracking-wider">
+                        {VIEW_TITLES[activeView]?.label}
+                      </span>
+                    </>
+                  )}
                 </div>
 
-                <div className="flex items-center gap-2 text-[11px] text-[#86868B] font-mono">
+                <div className="hidden sm:flex items-center gap-2 text-[11px] text-[#86868B] font-mono">
                   <Layers className="w-3.5 h-3.5 text-[#0A84FF]" />
-                  <span>{VIEW_TITLES[activeView]?.tag}</span>
+                  <span>
+                    {activeView === 'project-detail'
+                      ? selectedProject?.subtitle || 'Case Study'
+                      : VIEW_TITLES[activeView]?.tag}
+                  </span>
                 </div>
               </div>
             </div>
@@ -133,4 +192,3 @@ export default function App() {
     </div>
   );
 }
-

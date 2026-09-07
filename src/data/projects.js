@@ -1,6 +1,6 @@
 export const projects = [
   {
-    id: "jaansathi",
+    id: "jansathi",
     title: "JanSathi",
     subtitle: "AI-Powered Civic Engagement Platform",
     category: "Civic Tech / Multi-Agent AI",
@@ -23,12 +23,12 @@ export const projects = [
     ],
     tech: ["React", "Firebase", "Google Gemini API", "Leaflet.js", "Tailwind CSS", "Google Cloud CDN"],
     myRole:
-      "Architected the dual-portal system, built the role-based auth and Firestore data flow, integrated Leaflet.js GIS heatmaps, and configured the Gemini AI triage prompts.",
+      "Conceived, architected, and engineered end-to-end by Raghavendra Waggar — covering the dual-portal frontend, GIS incident heatmaps, 10-agent Gemini AI pipelines, Firebase Auth RBAC, and real-time Firestore synchronization.",
     outcome:
       "Fully deployed and operational at jaansathi-b8ad2.web.app; tested live during the Vibe2Ship Hackathon sprint with complete citizen and officer workflows.",
     liveUrl: "https://jaansathi-b8ad2.web.app",
     githubUrl: "https://github.com/Raghavendra1204/jansathi",
-    reportUrl: "https://github.com/Raghavendra1204/jansathi#readme",
+    reportUrl: "/projects/jansathi/Jansathi_Project_Report.pdf",
     futureImprovements:
       "Introduce WhatsApp bot reporting integration and offline-first mobile synchronization for areas with unstable connectivity.",
     screenshots: [

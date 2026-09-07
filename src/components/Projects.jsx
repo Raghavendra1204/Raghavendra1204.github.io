@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { projects } from '../data/projects';
 import TechIcon from './TechIcon';
-import ProjectModal from './ProjectModal';
 import { ExternalLink, Github, ChevronRight, CheckCircle2 } from 'lucide-react';
 
-export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null);
-
+export default function Projects({ onSelectProject }) {
   return (
     <section id="projects" className="py-20 border-b border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
@@ -19,7 +16,7 @@ export default function Projects() {
             List of Projects ({projects.length})
           </h2>
           <p className="text-xs sm:text-sm text-[#86868B] mt-1">
-            Click on any project to view screenshots, problem scope, key features, and live deployment details.
+            Click on any project to open its dedicated page with complete case studies, architecture notes, screenshots, and live reports.
           </p>
         </div>
 
@@ -28,7 +25,7 @@ export default function Projects() {
           {projects.map((proj) => (
             <div
               key={proj.id}
-              onClick={() => setSelectedProject(proj)}
+              onClick={() => onSelectProject && onSelectProject(proj)}
               className="rounded-3xl ios-glass border border-white/10 hover:border-white/25 transition-all flex flex-col justify-between overflow-hidden group shadow-lg shadow-black/40 cursor-pointer hover:shadow-2xl hover:translate-y-[-2px]"
             >
               <div className="p-6">
@@ -82,11 +79,11 @@ export default function Projects() {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setSelectedProject(proj);
+                    onSelectProject && onSelectProject(proj);
                   }}
                   className="text-xs font-medium text-[#0A84FF] group-hover:text-white inline-flex items-center gap-1 transition-colors"
                 >
-                  <span>View Project Details</span>
+                  <span>Open Dedicated Project Page</span>
                   <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </button>
 
@@ -111,7 +108,7 @@ export default function Projects() {
                       onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1 text-xs font-medium text-[#0A84FF] hover:underline"
                     >
-                      <span>Live Demo</span>
+                      <span>Live App</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   )}
@@ -120,14 +117,6 @@ export default function Projects() {
             </div>
           ))}
         </div>
-
-        {/* Dedicated Project Details Window / Modal */}
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
       </div>
     </section>
   );
