@@ -15,12 +15,6 @@ export default function Hero({ onNavigate }) {
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         
-        {/* Status Pill Badge (iOS HIG Style) */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ios-pill text-xs text-[#86868B] mb-8">
-          <span className="w-2 h-2 rounded-full bg-[#0A84FF]"></span>
-          <span>Open to Software & AI Engineering Roles & Internships</span>
-        </div>
-
         {/* Hero Top: Identity & Avatar Card */}
         <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-8 mb-8">
           <div className="max-w-3xl">
@@ -28,23 +22,14 @@ export default function Hero({ onNavigate }) {
               Raghavendra Waggar
             </h1>
             
-            <p className="text-xl sm:text-2xl font-medium text-[#A1A1A6] leading-snug">
-              AI & Data Science Student who enjoys{' '}
+            <p className="text-xl sm:text-2xl font-medium text-[#A1A1A6] leading-snug mb-4">
+              AI & Data Science student who enjoys{' '}
               <span className="text-white">building things, experimenting, & understanding systems.</span>
             </p>
 
-            {/* Authentic Personal Introduction from introduction.txt */}
-            <div className="space-y-3.5 text-base text-[#86868B] leading-relaxed mt-5">
-              <p>
-                Hi, I'm <span className="text-white font-medium">Raghavendra</span>. I'm an Artificial Intelligence and Data Science student who enjoys building things, experimenting with technology, and understanding how systems work under the hood.
-              </p>
-              <p>
-                My interests revolve around AI, machine learning, data engineering, LLMs, GenAI, and software development. I've worked on projects involving AI-powered applications, web development, APIs, automation, and data-driven systems. At the same time, I like stepping outside the conventional path and exploring areas such as backend engineering, MLOps, cloud computing, and system design.
-              </p>
-              <p>
-                I learn best by actually building: taking an idea, breaking it down, writing the code, breaking the code again, figuring out what went wrong, and turning it into something that works.
-              </p>
-            </div>
+            <p className="text-base text-[#86868B] leading-relaxed max-w-2xl">
+              Undergraduate in Artificial Intelligence & Data Science at USAR, GGSIPU in New Delhi. Exploring software beneath the abstractions—from AI architectures and APIs to backend workflows and distributed data.
+            </p>
           </div>
 
           {/* Profile Picture Frame (iOS Squircle Card) */}
@@ -80,22 +65,29 @@ export default function Hero({ onNavigate }) {
             <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80"></div>
             <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80"></div>
             <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80"></div>
-            <span className="ml-1.5 text-[#86868B]">philosophy.sh</span>
+            <span className="ml-1.5 text-[#86868B]">mindset.sh</span>
           </div>
           <p className="text-[#F5F5F7] font-medium leading-relaxed font-mono text-xs sm:text-sm">
-            &ldquo;Every project gives me something new to understand—whether it's a technology I've never used before, a problem I couldn't solve initially, or simply a better way of building something. I'm still learning, still experimenting, and still building.&rdquo;
+            &ldquo;I like taking an idea, breaking it down, writing the code, breaking the code again, figuring out what went wrong, and eventually turning it into something that works.&rdquo;
           </p>
         </div>
 
         {/* Apple HIG Segmented CTAs */}
         <div className="flex flex-wrap items-center gap-3 mb-12">
           <a
-            href="#projects"
-            onClick={(e) => handleNavClick('projects', e)}
+            href="#about"
+            onClick={(e) => handleNavClick('about', e)}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A84FF] text-white font-medium text-xs sm:text-sm hover:bg-[#0071E3] transition-all shadow-md shadow-blue-500/20"
           >
-            <span>View Projects</span>
+            <span>About & Thinking</span>
             <ArrowRight className="w-4 h-4" />
+          </a>
+          <a
+            href="#projects"
+            onClick={(e) => handleNavClick('projects', e)}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full ios-glass border border-white/10 text-white font-medium text-xs sm:text-sm hover:bg-white/10 transition-all"
+          >
+            <span>Projects</span>
           </a>
           <a
             href="https://github.com/Raghavendra1204"

@@ -111,10 +111,10 @@ export default function App() {
         <Navbar activeView={activeView} onNavigate={handleNavigate} />
 
         <main className="flex-grow pt-4">
-          {/* Sub-window Breadcrumb / Active Window Header when viewing individual section */}
+          {/* Sub-window Breadcrumb / Active View Header when viewing individual section */}
           {activeView !== 'home' && !loading && (
-            <div className="pt-28 pb-4 max-w-6xl mx-auto px-4 sm:px-8 window-fade">
-              <div className="flex items-center justify-between gap-4 p-3.5 rounded-2xl ios-glass border border-white/10 shadow-lg shadow-black/40">
+            <div className="pt-28 pb-2 max-w-6xl mx-auto px-4 sm:px-8 window-fade">
+              <div className="flex items-center justify-between gap-4 p-3 rounded-2xl ios-glass border border-white/10 shadow-lg shadow-black/40">
                 <div className="flex items-center gap-2 text-xs font-mono">
                   <button
                     onClick={() => handleNavigate('home')}
@@ -129,17 +129,10 @@ export default function App() {
                   </span>
                 </div>
 
-                <div className="hidden sm:flex items-center gap-2 text-[11px] text-[#86868B] font-mono">
+                <div className="flex items-center gap-2 text-[11px] text-[#86868B] font-mono">
                   <Layers className="w-3.5 h-3.5 text-[#0A84FF]" />
                   <span>{VIEW_TITLES[activeView]?.tag}</span>
                 </div>
-
-                <button
-                  onClick={() => handleNavigate('home')}
-                  className="text-xs font-medium text-[#86868B] hover:text-white px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 transition-all"
-                >
-                  Close Window ✕
-                </button>
               </div>
             </div>
           )}
