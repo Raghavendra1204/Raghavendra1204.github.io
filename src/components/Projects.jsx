@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { projects } from '../data/projects';
 import TechIcon from './TechIcon';
-import { ExternalLink, Github, ChevronRight, CheckCircle2, X } from 'lucide-react';
+import ProjectModal from './ProjectModal';
+import { ExternalLink, Github, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -12,13 +13,13 @@ export default function Projects() {
         {/* Section Header */}
         <div className="mb-10">
           <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
-             Featured Projects
+             Featured Work
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            Systems, civic tech & AI platforms.
+            List of Projects ({projects.length})
           </h2>
           <p className="text-xs sm:text-sm text-[#86868B] mt-1">
-            Real software built with emphasis on backend workflows, database integrity, and autonomous decision support.
+            Click on any project to view screenshots, problem scope, key features, and live deployment details.
           </p>
         </div>
 
@@ -27,7 +28,8 @@ export default function Projects() {
           {projects.map((proj) => (
             <div
               key={proj.id}
-              className="rounded-3xl ios-glass border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between overflow-hidden group shadow-lg shadow-black/40"
+              onClick={() => setSelectedProject(proj)}
+              className="rounded-3xl ios-glass border border-white/10 hover:border-white/25 transition-all flex flex-col justify-between overflow-hidden group shadow-lg shadow-black/40 cursor-pointer hover:shadow-2xl hover:translate-y-[-2px]"
             >
               <div className="p-6">
                 {/* Header Tag */}
@@ -35,7 +37,7 @@ export default function Projects() {
                   <span className="text-[11px] font-mono text-[#86868B] uppercase tracking-wider">
                     {proj.category}
                   </span>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full ios-pill text-[#0A84FF]">
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full ios-pill text-[#0A84FF] border border-white/10">
                     {proj.tag}
                   </span>
                 </div>
@@ -47,15 +49,15 @@ export default function Projects() {
                 <p className="text-xs text-[#86868B] mb-3">{proj.subtitle}</p>
 
                 <p className="text-xs sm:text-sm text-[#A1A1A6] leading-relaxed mb-5">
-                  {proj.description}
+                  {proj.shortDescription || proj.description}
                 </p>
 
-                {/* Highlights */}
+                {/* Highlights / Features */}
                 <div className="space-y-1.5 mb-5">
-                  {proj.highlights.slice(0, 3).map((item, idx) => (
+                  {(proj.keyFeatures || proj.highlights).slice(0, 3).map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-xs text-[#86868B]">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#0A84FF] shrink-0 mt-0.5" />
-                      <span>{item}</span>
+                      <span className="line-clamp-1">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -77,11 +79,15 @@ export default function Projects() {
               {/* Card Footer Actions */}
               <div className="px-6 py-3.5 bg-black/40 border-t border-white/5 flex items-center justify-between">
                 <button
-                  onClick={() => setSelectedProject(proj)}
-                  className="text-xs font-medium text-[#0A84FF] hover:text-white inline-flex items-center gap-1 transition-colors"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedProject(proj);
+                  }}
+                  className="text-xs font-medium text-[#0A84FF] group-hover:text-white inline-flex items-center gap-1 transition-colors"
                 >
-                  <span>Architecture Details</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <span>View Project Details</span>
+                  <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </button>
 
                 <div className="flex items-center gap-2.5">
@@ -90,6 +96,7 @@ export default function Projects() {
                       href={proj.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-[#86868B] hover:text-white transition-colors p-1"
                       aria-label={`${proj.title} GitHub Repository`}
                     >
@@ -101,9 +108,10 @@ export default function Projects() {
                       href={proj.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1 text-xs font-medium text-[#0A84FF] hover:underline"
                     >
-                      <span>Live App</span>
+                      <span>Live Demo</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   )}
@@ -113,92 +121,12 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Modal Sheet for Deep-Dive Architecture Inspection (Apple Sheet Style) */}
+        {/* Dedicated Project Details Window / Modal */}
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-xl animate-fade-in">
-            <div className="relative w-full max-w-2xl ios-glass-elevated border border-white/15 rounded-3xl p-6 sm:p-8 overflow-y-auto max-h-[90vh] shadow-2xl">
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 text-[#86868B] hover:text-white p-1.5 rounded-full bg-white/10"
-                aria-label="Close Project Details"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              <div className="mb-4">
-                <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider">
-                  {selectedProject.category}
-                </span>
-                <h3 className="text-2xl font-bold text-white mt-1">
-                  {selectedProject.title}
-                </h3>
-                <p className="text-xs text-[#86868B]">{selectedProject.subtitle}</p>
-              </div>
-
-              <div className="p-3.5 bg-black/50 rounded-2xl border border-white/5 mb-5 font-mono">
-                <span className="text-[10px] text-[#86868B] uppercase block mb-1">
-                  System Architecture
-                </span>
-                <p className="text-xs text-[#0A84FF]">{selectedProject.architecture}</p>
-              </div>
-
-              <div className="space-y-3 mb-6">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#86868B]">
-                  Implementation Highlights
-                </h4>
-                <ul className="space-y-2 text-xs sm:text-sm text-[#A1A1A6]">
-                  {selectedProject.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#0A84FF] shrink-0 mt-0.5" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mb-6">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#86868B] mb-2">
-                  Technology Stack
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-full ios-pill text-[#F5F5F7]"
-                    >
-                      <TechIcon name={t} className="w-3.5 h-3.5 shrink-0" />
-                      <span>{t}</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
-                {selectedProject.githubUrl && (
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full ios-glass border border-white/10 text-white text-xs font-medium hover:bg-white/10"
-                  >
-                    <Github className="w-3.5 h-3.5" />
-                    <span>View Repository</span>
-                  </a>
-                )}
-                {selectedProject.liveUrl && (
-                  <a
-                    href={selectedProject.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0A84FF] text-white text-xs font-medium hover:bg-[#0071E3]"
-                  >
-                    <span>Launch Live App</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
         )}
       </div>
     </section>
