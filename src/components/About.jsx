@@ -1,14 +1,74 @@
-import React from 'react';
-import { Compass, Hammer, Cpu, Terminal, GraduationCap } from 'lucide-react';
+import React, { useState } from 'react';
+import { Compass, Hammer, Cpu, Terminal, GraduationCap, Code2, Database } from 'lucide-react';
 
-export default function About() {
+export default function About({ onNavigate }) {
+  const [avatarError, setAvatarError] = useState(false);
+
   return (
     <section id="about" className="py-20 border-b border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
-        {/* Section Header */}
-        <div className="mb-10">
+        
+        {/* Top Section: Raghavendra Waggar Identity + Avatar Card */}
+        <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-8 mb-8">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white mb-3">
+              Raghavendra Waggar
+            </h1>
+            
+            <p className="text-xl sm:text-2xl font-medium text-[#A1A1A6] leading-snug mb-4">
+              AI & Data Science student who enjoys{' '}
+              <span className="text-white">building things, experimenting, & understanding systems.</span>
+            </p>
+
+            <p className="text-base text-[#86868B] leading-relaxed max-w-2xl">
+              Undergraduate in Artificial Intelligence & Data Science at USAR, GGSIPU in New Delhi. Exploring software beneath the abstractions—from AI architectures and APIs to backend workflows and distributed data.
+            </p>
+          </div>
+
+          {/* Profile Picture Frame (iOS Squircle Card) */}
+          <div className="relative shrink-0 self-start md:self-center flex flex-col items-center">
+            <div className="w-32 h-36 sm:w-40 sm:h-48 rounded-3xl p-1 ios-glass-elevated border border-white/15 shadow-2xl relative overflow-hidden">
+              {!avatarError ? (
+                <img
+                  src="/photos/avatar.jpg"
+                  alt="Raghavendra Waggar"
+                  onError={() => setAvatarError(true)}
+                  className="w-full h-full object-cover object-top rounded-2xl"
+                />
+              ) : (
+                <div className="w-full h-full rounded-2xl bg-[#1C1C1E] flex flex-col items-center justify-center text-[#86868B] font-mono">
+                  <span className="text-2xl font-bold text-white tracking-wider">RW</span>
+                  <span className="text-[10px] uppercase mt-0.5">Engineer</span>
+                </div>
+              )}
+            </div>
+
+            {/* Caption in Apple System Pill */}
+            <div className="mt-2.5 px-3 py-1 rounded-full ios-pill text-[11px] text-[#86868B] text-center shadow-sm">
+              <span className="text-[#0A84FF] mr-1">“</span>
+              <span>most professional picture yet far</span>
+              <span className="text-[#0A84FF] ml-1">”</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Developer Mindset Box (iOS Terminal Card) */}
+        <div className="mb-12 max-w-3xl rounded-2xl ios-glass border border-white/10 p-4 text-xs sm:text-sm shadow-inner">
+          <div className="flex items-center gap-1.5 pb-2 mb-2 border-b border-white/5 text-[#86868B] text-[11px] font-mono">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80"></div>
+            <span className="ml-1.5 text-[#86868B]">mindset.sh</span>
+          </div>
+          <p className="text-[#F5F5F7] font-medium leading-relaxed font-mono text-xs sm:text-sm">
+            &ldquo;I like taking an idea, breaking it down, writing the code, breaking the code again, figuring out what went wrong, and eventually turning it into something that works.&rdquo;
+          </p>
+        </div>
+
+        {/* Section Divider & Header */}
+        <div className="mb-8 pt-4 border-t border-white/5">
           <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
-            About Me
+            Engineering Background & Philosophy
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
             How I think, experiment, and build.

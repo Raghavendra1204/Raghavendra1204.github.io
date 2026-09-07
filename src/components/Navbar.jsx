@@ -40,14 +40,14 @@ export default function Navbar({ activeView = 'home', onNavigate }) {
         }`}
       >
         <div className="flex items-center justify-between">
-          {/* Apple Monogram Brand -> Navigates to Home/Front Window */}
+          {/* Apple Monogram Brand -> Navigates to About View */}
           <button
-            onClick={(e) => handleLinkClick('home', e)}
+            onClick={(e) => handleLinkClick('about', e)}
             className="flex items-center gap-2 text-white font-sans font-semibold tracking-tight hover:opacity-80 transition-opacity focus:outline-none"
-            aria-label="Home"
+            aria-label="About"
           >
             <div className={`w-7 h-7 rounded-full border flex items-center justify-center text-xs font-mono transition-all ${
-              activeView === 'home'
+              activeView === 'about'
                 ? 'bg-[#0A84FF] border-[#0A84FF] text-white shadow-md shadow-blue-500/30'
                 : 'bg-white/10 border-white/15 text-white'
             }`}>
@@ -60,17 +60,6 @@ export default function Navbar({ activeView = 'home', onNavigate }) {
 
           {/* Desktop Navigation Links (iOS Segmented Style) */}
           <div className="hidden md:flex items-center gap-1.5 p-1 rounded-full bg-black/30 border border-white/5 text-[13px] font-medium">
-            <button
-              onClick={(e) => handleLinkClick('home', e)}
-              className={`px-3 py-1 rounded-full transition-all flex items-center gap-1.5 ${
-                activeView === 'home'
-                  ? 'bg-white/15 text-white shadow-sm font-semibold'
-                  : 'text-[#86868B] hover:text-white'
-              }`}
-            >
-              <Home className="w-3.5 h-3.5" />
-              <span>Front</span>
-            </button>
             {navLinks.map((link) => (
               <button
                 key={link.name}
@@ -132,15 +121,6 @@ export default function Navbar({ activeView = 'home', onNavigate }) {
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-3 pt-3 border-t border-white/10 space-y-1.5 pb-1">
-            <button
-              onClick={(e) => handleLinkClick('home', e)}
-              className={`w-full text-left py-1.5 px-2 rounded-xl text-sm transition-colors flex items-center gap-2 ${
-                activeView === 'home' ? 'bg-white/10 text-white font-medium' : 'text-[#86868B] hover:text-white'
-              }`}
-            >
-              <Home className="w-4 h-4" />
-              <span>Front (Overview)</span>
-            </button>
             {navLinks.map((link) => (
               <button
                 key={link.name}

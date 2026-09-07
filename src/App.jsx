@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
 import About from './components/About';
 import TechStack from './components/TechStack';
 import Projects from './components/Projects';
@@ -13,8 +12,7 @@ import Footer from './components/Footer';
 import { ChevronRight, ArrowLeft, Sparkles, Layers } from 'lucide-react';
 
 const VIEW_TITLES = {
-  home: { label: 'Front Overview', tag: 'Identity & Engineering Scope' },
-  about: { label: 'About & Philosophy', tag: 'Engineering Philosophy' },
+  about: { label: 'About & Philosophy', tag: 'Identity, Mindset & Engineering Philosophy' },
   skills: { label: 'Technical Stack', tag: 'Languages, Frameworks & ML' },
   projects: { label: 'Featured Projects', tag: 'Systems, Civic Tech & AI Platforms' },
   experience: { label: 'Hackathons & Sprints', tag: 'Competitive Builds & Results' },
@@ -24,7 +22,7 @@ const VIEW_TITLES = {
 };
 
 export default function App() {
-  const [activeView, setActiveView] = useState('home');
+  const [activeView, setActiveView] = useState('about');
   const [loading, setLoading] = useState(false);
   const [loadingTag, setLoadingTag] = useState('');
 
@@ -34,8 +32,8 @@ export default function App() {
       const hash = window.location.hash.replace('#', '').toLowerCase();
       if (hash && VIEW_TITLES[hash]) {
         setActiveView(hash);
-      } else if (!hash) {
-        setActiveView('home');
+      } else {
+        setActiveView('about');
       }
     };
 
@@ -53,7 +51,7 @@ export default function App() {
     // Smooth window switch transition delay (Apple style micro-loading)
     setTimeout(() => {
       setActiveView(targetView);
-      if (targetView === 'home') {
+      if (targetView === 'about') {
         window.history.pushState(null, '', window.location.pathname);
       } else {
         window.history.pushState(null, '', `#${targetView}`);
@@ -69,8 +67,6 @@ export default function App() {
     }
 
     switch (activeView) {
-      case 'about':
-        return <About />;
       case 'skills':
         return <TechStack />;
       case 'projects':
@@ -83,20 +79,9 @@ export default function App() {
         return <GitHubActivity />;
       case 'resume':
         return <ResumeSection />;
-      case 'home':
+      case 'about':
       default:
-        return (
-          <>
-            <Hero onNavigate={handleNavigate} />
-            <About />
-            <TechStack />
-            <Projects />
-            <Experience />
-            <HobbiesAndPhotography />
-            <GitHubActivity />
-            <ResumeSection />
-          </>
-        );
+        return <About onNavigate={handleNavigate} />;
     }
   };
 
@@ -111,17 +96,17 @@ export default function App() {
         <Navbar activeView={activeView} onNavigate={handleNavigate} />
 
         <main className="flex-grow pt-4">
-          {/* Sub-window Breadcrumb / Active View Header when viewing individual section */}
-          {activeView !== 'home' && !loading && (
+          {/* Sub-view Breadcrumb Header when viewing non-About sections */}
+          {activeView !== 'about' && !loading && (
             <div className="pt-28 pb-2 max-w-6xl mx-auto px-4 sm:px-8 window-fade">
               <div className="flex items-center justify-between gap-4 p-3 rounded-2xl ios-glass border border-white/10 shadow-lg shadow-black/40">
                 <div className="flex items-center gap-2 text-xs font-mono">
                   <button
-                    onClick={() => handleNavigate('home')}
+                    onClick={() => handleNavigate('about')}
                     className="inline-flex items-center gap-1.5 text-[#86868B] hover:text-white transition-colors group"
                   >
                     <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
-                    <span>raghavendra.dev</span>
+                    <span>About (Home)</span>
                   </button>
                   <ChevronRight className="w-3 h-3 text-[#86868B]" />
                   <span className="text-[#0A84FF] font-medium uppercase tracking-wider">
