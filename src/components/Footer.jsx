@@ -1,7 +1,7 @@
 import React from 'react';
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

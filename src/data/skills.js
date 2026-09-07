@@ -15,6 +15,7 @@ export const skillCategories = [
     name: "AI & Machine Learning",
     description: "Modeling, clustering, neural networks, and agent architectures",
     skills: [
+      { name: "PyTorch", context: "Tensors, autograd, neural network architectures & training" },
       { name: "Machine Learning", context: "Supervised and unsupervised models" },
       { name: "Deep Learning & CNNs", context: "Convolutional vision networks and feature extraction" },
       { name: "Clustering Algorithms", context: "K-Means, DBSCAN clustering implementations" },

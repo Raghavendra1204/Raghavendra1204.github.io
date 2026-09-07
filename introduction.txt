@@ -1,0 +1,11 @@
+Hi, I'm Raghavendra.
+
+I'm an Artificial Intelligence and Data Science student who enjoys building things, experimenting with technology, and understanding how systems work under the hood.
+
+My interests revolve around AI, machine learning, data engineering, LLMs, GenAI, and software development. I've worked on projects involving AI-powered applications, web development, APIs, automation, and data-driven systems. At the same time, I like stepping outside the conventional path and exploring areas such as backend engineering, MLOps, cloud computing, and system design.
+
+I'm someone who learns best by actually building. Rather than just studying how something works, I prefer taking an idea, breaking it down, writing the code, breaking the code again, figuring out what went wrong, and eventually turning it into something that actually works.
+
+A lot of my learning comes from that process. Every project gives me something new to understand, whether it's a technology I've never used before, a problem I couldn't solve initially, or simply a better way of building something.
+
+I'm still learning, still experimenting, and still building. And honestly, that's probably the part I enjoy the most.

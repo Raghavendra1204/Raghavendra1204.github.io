@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, FileText, Github, Linkedin, Terminal, Sparkles } from 'lucide-react';
+import { Menu, X, FileText, Github, Linkedin, Home } from 'lucide-react';
 
-export default function Navbar() {
+export default function Navbar({ activeView = 'home', onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -14,13 +14,21 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Hackathons', href: '#experience' },
-    { name: 'Interests', href: '#hobbies' },
-    { name: 'GitHub', href: '#github' },
+    { name: 'About', id: 'about' },
+    { name: 'Skills', id: 'skills' },
+    { name: 'Projects', id: 'projects' },
+    { name: 'Hackathons', id: 'experience' },
+    { name: 'Interests', id: 'hobbies' },
+    { name: 'GitHub', id: 'github' },
   ];
+
+  const handleLinkClick = (id, e) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate(id);
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-3 left-0 right-0 z-40 px-4 sm:px-6 transition-all duration-300">
@@ -32,29 +40,49 @@ export default function Navbar() {
         }`}
       >
         <div className="flex items-center justify-between">
-          {/* Apple Monogram Brand */}
-          <a
-            href="#"
-            className="flex items-center gap-2 text-white font-sans font-semibold tracking-tight hover:opacity-80 transition-opacity"
+          {/* Apple Monogram Brand -> Navigates to Home/Front Window */}
+          <button
+            onClick={(e) => handleLinkClick('home', e)}
+            className="flex items-center gap-2 text-white font-sans font-semibold tracking-tight hover:opacity-80 transition-opacity focus:outline-none"
+            aria-label="Home"
           >
-            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-white text-xs font-mono">
+            <div className={`w-7 h-7 rounded-full border flex items-center justify-center text-xs font-mono transition-all ${
+              activeView === 'home'
+                ? 'bg-[#0A84FF] border-[#0A84FF] text-white shadow-md shadow-blue-500/30'
+                : 'bg-white/10 border-white/15 text-white'
+            }`}>
               <span>RW</span>
             </div>
             <span className="text-sm font-medium tracking-tight">
               raghavendra<span className="text-[#0A84FF]">.dev</span>
             </span>
-          </a>
+          </button>
 
           {/* Desktop Navigation Links (iOS Segmented Style) */}
-          <div className="hidden md:flex items-center gap-5 text-[13px] font-medium text-[#86868B]">
+          <div className="hidden md:flex items-center gap-1.5 p-1 rounded-full bg-black/30 border border-white/5 text-[13px] font-medium">
+            <button
+              onClick={(e) => handleLinkClick('home', e)}
+              className={`px-3 py-1 rounded-full transition-all flex items-center gap-1.5 ${
+                activeView === 'home'
+                  ? 'bg-white/15 text-white shadow-sm font-semibold'
+                  : 'text-[#86868B] hover:text-white'
+              }`}
+            >
+              <Home className="w-3.5 h-3.5" />
+              <span>Front</span>
+            </button>
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                className="hover:text-white transition-colors"
+                onClick={(e) => handleLinkClick(link.id, e)}
+                className={`px-3 py-1 rounded-full transition-all ${
+                  activeView === link.id
+                    ? 'bg-white/15 text-white shadow-sm font-semibold'
+                    : 'text-[#86868B] hover:text-white'
+                }`}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -78,13 +106,17 @@ export default function Navbar() {
             >
               <Linkedin className="w-4 h-4" />
             </a>
-            <a
-              href="#resume"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0A84FF] text-white text-xs font-medium hover:bg-[#0071E3] shadow-sm shadow-blue-500/20 transition-all"
+            <button
+              onClick={(e) => handleLinkClick('resume', e)}
+              className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
+                activeView === 'resume'
+                  ? 'bg-white text-black shadow-md'
+                  : 'bg-[#0A84FF] text-white hover:bg-[#0071E3] shadow-sm shadow-blue-500/20'
+              }`}
             >
               <FileText className="w-3 h-3" />
               <span>Resume</span>
-            </a>
+            </button>
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -99,18 +131,28 @@ export default function Navbar() {
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 pt-3 border-t border-white/10 space-y-2 pb-1">
+          <div className="md:hidden mt-3 pt-3 border-t border-white/10 space-y-1.5 pb-1">
+            <button
+              onClick={(e) => handleLinkClick('home', e)}
+              className={`w-full text-left py-1.5 px-2 rounded-xl text-sm transition-colors flex items-center gap-2 ${
+                activeView === 'home' ? 'bg-white/10 text-white font-medium' : 'text-[#86868B] hover:text-white'
+              }`}
+            >
+              <Home className="w-4 h-4" />
+              <span>Front (Overview)</span>
+            </button>
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-1 text-sm text-[#86868B] hover:text-white transition-colors"
+                onClick={(e) => handleLinkClick(link.id, e)}
+                className={`w-full text-left py-1.5 px-2 rounded-xl text-sm transition-colors ${
+                  activeView === link.id ? 'bg-white/10 text-white font-medium' : 'text-[#86868B] hover:text-white'
+                }`}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+            <div className="pt-2.5 border-t border-white/10 flex items-center justify-between px-2">
               <div className="flex gap-2">
                 <a
                   href="https://github.com/Raghavendra1204"
@@ -129,14 +171,13 @@ export default function Navbar() {
                   <Linkedin className="w-4 h-4" />
                 </a>
               </div>
-              <a
-                href="#resume"
-                onClick={() => setMobileMenuOpen(false)}
+              <button
+                onClick={(e) => handleLinkClick('resume', e)}
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A84FF] text-white text-xs font-medium"
               >
                 <FileText className="w-3 h-3" />
                 <span>Resume</span>
-              </a>
+              </button>
             </div>
           </div>
         )}

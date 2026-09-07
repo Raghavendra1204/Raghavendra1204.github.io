@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { ArrowRight, Github, Linkedin, FileText, Code2, Cpu, Database, GraduationCap } from 'lucide-react';
 
-export default function Hero() {
+export default function Hero({ onNavigate }) {
   const [avatarError, setAvatarError] = useState(false);
+
+  const handleNavClick = (viewId, e) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(viewId);
+    }
+  };
 
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-white/5">
@@ -15,27 +22,34 @@ export default function Hero() {
         </div>
 
         {/* Hero Top: Identity & Avatar Card */}
-        <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-8 mb-10">
+        <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-8 mb-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white mb-3">
               Raghavendra Waggar
             </h1>
             
             <p className="text-xl sm:text-2xl font-medium text-[#A1A1A6] leading-snug">
-              AI & Data Science Student building{' '}
-              <span className="text-white">AI-powered software systems.</span>
+              AI & Data Science Student who enjoys{' '}
+              <span className="text-white">building things, experimenting, & understanding systems.</span>
             </p>
 
-            <p className="text-base text-[#86868B] leading-relaxed mt-4">
-              Undergraduate at <span className="text-[#F5F5F7]">USAR, GGSIPU</span> in New Delhi. 
-              Focused on the engineering required to make AI reliable in production: 
-              backend architectures, asynchronous queues, and systems beneath the abstractions.
-            </p>
+            {/* Authentic Personal Introduction from introduction.txt */}
+            <div className="space-y-3.5 text-base text-[#86868B] leading-relaxed mt-5">
+              <p>
+                Hi, I'm <span className="text-white font-medium">Raghavendra</span>. I'm an Artificial Intelligence and Data Science student who enjoys building things, experimenting with technology, and understanding how systems work under the hood.
+              </p>
+              <p>
+                My interests revolve around AI, machine learning, data engineering, LLMs, GenAI, and software development. I've worked on projects involving AI-powered applications, web development, APIs, automation, and data-driven systems. At the same time, I like stepping outside the conventional path and exploring areas such as backend engineering, MLOps, cloud computing, and system design.
+              </p>
+              <p>
+                I learn best by actually building: taking an idea, breaking it down, writing the code, breaking the code again, figuring out what went wrong, and turning it into something that works.
+              </p>
+            </div>
           </div>
 
           {/* Profile Picture Frame (iOS Squircle Card) */}
           <div className="relative shrink-0 self-start md:self-center flex flex-col items-center">
-            <div className="w-32 h-36 sm:w-36 sm:h-44 rounded-3xl p-1 ios-glass-elevated border border-white/15 shadow-2xl relative overflow-hidden">
+            <div className="w-32 h-36 sm:w-40 sm:h-48 rounded-3xl p-1 ios-glass-elevated border border-white/15 shadow-2xl relative overflow-hidden">
               {!avatarError ? (
                 <img
                   src="/photos/avatar.jpg"
@@ -66,10 +80,10 @@ export default function Hero() {
             <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80"></div>
             <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80"></div>
             <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80"></div>
-            <span className="ml-1.5 text-[#86868B]">mindset.sh</span>
+            <span className="ml-1.5 text-[#86868B]">philosophy.sh</span>
           </div>
           <p className="text-[#F5F5F7] font-medium leading-relaxed font-mono text-xs sm:text-sm">
-            &ldquo;I like understanding how things work, building them myself, breaking them, and figuring out why they broke.&rdquo;
+            &ldquo;Every project gives me something new to understand—whether it's a technology I've never used before, a problem I couldn't solve initially, or simply a better way of building something. I'm still learning, still experimenting, and still building.&rdquo;
           </p>
         </div>
 
@@ -77,6 +91,7 @@ export default function Hero() {
         <div className="flex flex-wrap items-center gap-3 mb-12">
           <a
             href="#projects"
+            onClick={(e) => handleNavClick('projects', e)}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A84FF] text-white font-medium text-xs sm:text-sm hover:bg-[#0071E3] transition-all shadow-md shadow-blue-500/20"
           >
             <span>View Projects</span>
@@ -102,6 +117,7 @@ export default function Hero() {
           </a>
           <a
             href="#resume"
+            onClick={(e) => handleNavClick('resume', e)}
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full ios-glass border border-white/10 text-white font-medium text-xs sm:text-sm hover:bg-white/10 transition-all"
           >
             <FileText className="w-4 h-4 text-[#86868B]" />
