@@ -58,11 +58,12 @@ export const skillCategories = [
   },
   {
     name: "DevOps & Tooling",
-    description: "Version control, containerization, and deployment infrastructure",
+    description: "Version control, containerization, deployment, and structured agile planning",
     skills: [
       { name: "Docker", context: "Containerized environments and reproducible builds" },
       { name: "Git & GitHub", context: "Branching strategies, PR workflows, code review" },
       { name: "GitHub Actions", context: "CI/CD pipelines for automated testing & pages deployment" },
+      { name: "Notion & Kanban Boards", context: "Well-structured project planning, sprint roadmaps & progress keepup" },
       { name: "Vercel & Cloud CDN", context: "Edge deployment and production static distribution" },
       { name: "VS Code", context: "Configured debugging, linting, and profiling workspace" },
     ],

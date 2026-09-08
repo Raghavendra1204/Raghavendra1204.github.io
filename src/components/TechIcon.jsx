@@ -492,6 +492,27 @@ export default function TechIcon({ name = '', className = 'w-4 h-4' }) {
     return <Volume2 className={`${className} text-[#4285F4]`} />;
   }
 
+  // 41. Notion
+  if (norm.includes('notion')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="#FFFFFF">
+        <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.213.98l14.523-.84c.84-.046.933-.56.933-1.167V6.354c0-.606-.233-.933-.746-.887l-15.176.933c-.56.047-.747.374-.747.888zm13.496.7c.093.42 0 .84-.42.887l-.7.094v9.006c-.42.233-.84.373-1.26.373-.653 0-.933-.233-1.493-.933l-5.04-7.886v7.747l1.4.326s0 .84-.933.84l-3.313.187c-.093-.187 0-.606.327-.7l.84-.233V8.874l-1.073-.093c-.093-.42.14-.84.606-.887l3.687-.233 5.413 8.353V8.407l-1.12-.093c-.093-.42.187-.84.653-.887z"/>
+      </svg>
+    );
+  }
+
+  // 42. Kanban / Boards / Kuber Board
+  if (norm.includes('kanban') || norm.includes('board') || norm.includes('kuber')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#30D158" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="3" stroke="#86868B" strokeWidth="1.5" />
+        <path d="M8 7v6" />
+        <path d="M12 7v10" />
+        <path d="M16 7v4" />
+      </svg>
+    );
+  }
+
   // Default fallback
   return <Code className={`${className} text-[#86868B]`} />;
 }
