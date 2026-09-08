@@ -180,7 +180,7 @@ export const projects = [
       "Successfully containerized with Docker, deployed to AWS EC2 (http://13.204.64.226), and evaluated as the final capstone project under the IBM SkillsBuild Internship Program.",
     liveUrl: "http://13.204.64.226",
     githubUrl: "https://github.com/Raghavendra1204/Hindimate",
-    reportUrl: null,
+    reportUrl: "/projects/hindimate/HindiMate_Project_Report.pdf",
     futureImprovements:
       "Introduce speech-to-text pronunciation assessment to evaluate user vocal pitch and accuracy in real time.",
     screenshots: [

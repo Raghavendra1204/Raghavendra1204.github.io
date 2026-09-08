@@ -20,7 +20,15 @@ import {
   Maximize2,
   X,
   Compass,
-  Download
+  Download,
+  BookOpen,
+  Volume2,
+  Award,
+  Zap,
+  Code,
+  Server,
+  GitBranch,
+  Globe
 } from 'lucide-react';
 
 const JANSATHI_SCREENSHOTS = [
@@ -138,6 +146,41 @@ const JANSATHI_SCREENSHOTS = [
   },
 ];
 
+const HINDIMATE_SCREENSHOTS = [
+  {
+    id: 'hindimate-dashboard',
+    category: 'Learning Dashboard',
+    title: 'Student Learning Dashboard & Daily Streak Tracker',
+    file: '/projects/hindimate/screenshot_01_dashboard.png',
+    description:
+      'Personalized student dashboard tracking active 7-day streaks, 450 total earned XP, mastered vocabulary count, and daily Hindi learning goals. Features the dynamic "Word of the Day" (नमस्ते - Hello / Greetings) and instant prompt launcher to VaaniAI.'
+  },
+  {
+    id: 'hindimate-curriculum',
+    category: 'Curriculum & Modules',
+    title: 'Modular Structured Curriculum & Interactive Quiz Nodes',
+    file: '/projects/hindimate/screenshot_02_curriculum.png',
+    description:
+      'Comprehensive 5-tier modular curriculum covering Devanagari Script (11 modules), Essential Greetings (3 modules), Numbers & Time (2 modules), Vocabulary Builder (2 modules), and Grammar Mastery (2 modules). Each module pairs lessons with interactive XP quizzes.'
+  },
+  {
+    id: 'hindimate-study-material',
+    category: 'Study Resources & Audio',
+    title: '26-Chapter MPPSC Hindi Textbook & Audio Reader',
+    file: '/projects/hindimate/screenshot_03_study_material.png',
+    description:
+      'Digital Hindi literature repository featuring 26 full chapters from Drishti IAS DLP. Equipped with browser-native Web Speech API audio narration, real-time font scaling, and contextual "Ask Gemini" query triggers.'
+  },
+  {
+    id: 'hindimate-vaaniai-chat',
+    category: 'VaaniAI Coach',
+    title: 'VaaniAI Trilingual Conversational Workspace',
+    file: '/projects/hindimate/screenshot_04_vaaniai_chat.png',
+    description:
+      'Intelligent personal Hindi coach powered by Google Gemini API tiered models. Provides real-time pedagogical responses across Devanagari Hindi, Romanized Hinglish, and English with audio pronunciation playback and grammatical breakdowns.'
+  }
+];
+
 export default function ProjectDetailPage({ project, onBack }) {
   const [activePdfTab, setActivePdfTab] = useState('report');
   const [selectedImage, setSelectedImage] = useState(null);
@@ -146,6 +189,7 @@ export default function ProjectDetailPage({ project, onBack }) {
   // Scroll to top upon opening page
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
+    setScreenshotFilter('All');
   }, [project]);
 
   if (!project) return null;
@@ -153,12 +197,17 @@ export default function ProjectDetailPage({ project, onBack }) {
   const isJanSathi = project.id === 'jaansathi' || project.id === 'jansathi' || project.title.toLowerCase().includes('jansathi');
   const isHindiMate = project.id === 'hindi-mate' || project.title.toLowerCase().includes('hindimate');
 
+  const activeScreenshots = isJanSathi ? JANSATHI_SCREENSHOTS : isHindiMate ? HINDIMATE_SCREENSHOTS : [];
+  const screenshotCategories = isJanSathi
+    ? ['All', 'Officer Operations', 'GIS & Mapping', 'AI Agents Hub', 'Citizen Portal', 'Analytics']
+    : isHindiMate
+    ? ['All', 'Learning Dashboard', 'Curriculum & Modules', 'Study Resources & Audio', 'VaaniAI Coach']
+    : ['All'];
+
   const filteredScreenshots =
     screenshotFilter === 'All'
-      ? JANSATHI_SCREENSHOTS
-      : JANSATHI_SCREENSHOTS.filter((s) => s.category.includes(screenshotFilter));
-
-  const screenshotCategories = ['All', 'Officer Operations', 'GIS & Mapping', 'AI Agents Hub', 'Citizen Portal', 'Analytics'];
+      ? activeScreenshots
+      : activeScreenshots.filter((s) => s.category.includes(screenshotFilter));
 
   return (
     <div className="py-8 sm:py-12 max-w-6xl mx-auto px-4 sm:px-8 space-y-12">
@@ -406,89 +455,264 @@ export default function ProjectDetailPage({ project, onBack }) {
           </div>
         </section>
       ) : isHindiMate ? (
-        <section className="space-y-6">
-          <div className="flex items-center justify-between pb-3 border-b border-white/10">
-            <div>
-              <span className="text-xs font-mono text-[#FF9F0A] uppercase tracking-wider block mb-1">
-                IBM SkillsBuild Internship Program
+        <>
+          {/* 1. ABOUT SECTION — REFINED & HUMANIZED */}
+          <section className="space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <div>
+                <span className="text-xs font-mono text-[#FF9F0A] uppercase tracking-wider block mb-1">
+                  IBM SkillsBuild Internship Program • Capstone Project
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  About HindiMate
+                </h2>
+              </div>
+              <span className="text-xs font-mono text-[#86868B] px-3 py-1 rounded-full ios-pill">
+                Interactive Hindi Learning Platform
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Making Hindi Learning More Interactive
-              </h2>
-            </div>
-            <span className="text-xs font-mono text-[#86868B] px-3 py-1 rounded-full ios-pill">
-              Group Project • 7 Members
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Overview Card */}
-            <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3 md:col-span-2">
-              <p className="text-sm sm:text-base text-[#F5F5F7] leading-relaxed">
-                HindiMate is an interactive Hindi learning platform developed as a group project under the <strong className="text-white">IBM SkillsBuild Internship Program</strong> by a team of seven members. The idea was to make Hindi learning more approachable by combining structured learning material with interactive web-based lessons, AI-assisted features, OCR, and voice-based learning.
-              </p>
-              <p className="text-xs sm:text-sm text-[#A1A1A6] leading-relaxed">
-                The platform takes learners through Hindi step by step, starting with fundamentals such as vowels, consonants, and matras before moving toward vocabulary, greetings, everyday expressions, family relationships, numbers, dates, time, money, and basic grammar. Instead of presenting these concepts as static study material, HindiMate brings them into an interactive web environment where learners can explore and practice them more naturally.
-              </p>
             </div>
 
-            {/* OCR Integration Card */}
-            <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3">
-              <div className="flex items-center gap-2 text-white font-bold text-lg">
-                <FileText className="w-5 h-5 text-[#38BDF8]" />
-                <h3>OCR-Based Grammar Learning Workflow</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Overview / Introduction Card */}
+              <div className="p-6 sm:p-8 rounded-3xl ios-glass border border-white/10 space-y-4 md:col-span-2 shadow-xl">
+                <div className="flex items-center gap-2.5 text-[#FF9F0A]">
+                  <BookOpen className="w-5 h-5" />
+                  <span className="text-xs font-mono uppercase tracking-wider">Platform Philosophy</span>
+                </div>
+                <p className="text-base sm:text-lg text-[#F5F5F7] leading-relaxed font-normal">
+                  <strong className="text-white font-semibold">HindiMate</strong> is a web-based Hindi language learning platform designed to provide a structured, personalized, and deeply engaging learning experience. Built as a collaborative capstone under the <strong className="text-white font-semibold">IBM SkillsBuild Internship Program</strong>, the platform bridges the gap between static textbook memorization and natural language acquisition.
+                </p>
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  Rather than treating Hindi as isolated lists of words, HindiMate brings together <strong className="text-white">interactive modular lessons</strong>, <strong className="text-white">gamified assessments</strong>, <strong className="text-white">AI-assisted tutoring</strong>, <strong className="text-white">browser-native voice synthesis</strong>, and <strong className="text-white">OCR textbook ingestion</strong> into a single cohesive, cloud-deployed application.
+                </p>
               </div>
-              <p className="text-xs sm:text-sm text-[#A1A1A6] leading-relaxed">
-                One of the features we integrated was an OCR-based learning workflow for Hindi grammar. Existing grammar resources available in PDF format could be processed using OCR to extract their content, which could then be incorporated into the web-based learning experience.
-              </p>
-              <div className="p-3.5 rounded-2xl bg-black/40 border border-white/5 text-xs text-[#86868B]">
-                This helped reduce the need to manually transfer educational material and made it easier to reuse existing learning resources within the platform.
+
+              {/* Subsection 1: Modular Course Curriculum */}
+              <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3">
+                <div className="flex items-center gap-2 text-white font-bold text-lg">
+                  <Layers className="w-5 h-5 text-[#0A84FF]" />
+                  <h3>Modular Course Curriculum</h3>
+                </div>
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  The core learning experience is organized around progressive modular courses, guiding learners from absolute fundamentals through practical fluency:
+                </p>
+                <div className="space-y-2 pt-1 text-xs">
+                  {[
+                    { name: 'Devanagari Script', count: '11 Modules', desc: 'Vowels (स्वर), Consonants (व्यंजन), and Matras with interactive stroke visualization.' },
+                    { name: 'Essential Greetings & Conversations', count: '3 Modules', desc: 'Practical phrases, polite registers, and everyday interactions.' },
+                    { name: 'Numbers, Time & Currency', count: '2 Modules', desc: 'Hindi numerical systems, reading clock times, and Indian currency math.' },
+                    { name: 'Vocabulary Building', count: '2 Modules', desc: 'Thematic word banks for family relationships, food, travel, and nature.' },
+                    { name: 'Grammar Mastery', count: '2 Modules', desc: 'Sentence structures, gender concord, verb tenses, and case markers.' }
+                  ].map((mod, i) => (
+                    <div key={i} className="p-2.5 rounded-2xl bg-black/40 border border-white/5 flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#0A84FF] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold text-white">{mod.name}</span>
+                          <span className="text-[10px] font-mono text-[#0A84FF] bg-[#0A84FF]/10 px-2 py-0.5 rounded-full">{mod.count}</span>
+                        </div>
+                        <p className="text-[#86868B] text-[11px] mt-0.5">{mod.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-[#86868B] pt-1">
+                  Each module contains bite-sized lessons followed by quizzes, rewarding learners with XP as they complete activities.
+                </p>
               </div>
+
+              {/* Subsection 2: Gamification & Learner Telemetry */}
+              <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3">
+                <div className="flex items-center gap-2 text-white font-bold text-lg">
+                  <Award className="w-5 h-5 text-[#FF9F0A]" />
+                  <h3>Gamification & Learner Telemetry</h3>
+                </div>
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  Consistent practice is essential for script and tonal acquisition. HindiMate keeps learners motivated through transparent metrics and daily feedback loops:
+                </p>
+                <div className="grid grid-cols-2 gap-2 text-xs text-[#E5E5EA]">
+                  <div className="p-3 rounded-2xl bg-black/40 border border-white/5 space-y-1">
+                    <div className="text-[10px] font-mono text-[#FF9F0A]">DAILY STREAKS</div>
+                    <div className="text-white font-semibold text-sm">7-Day Fire Streak</div>
+                    <p className="text-[11px] text-[#86868B]">Encourages habit-forming daily practice sessions.</p>
+                  </div>
+                  <div className="p-3 rounded-2xl bg-black/40 border border-white/5 space-y-1">
+                    <div className="text-[10px] font-mono text-[#30D158]">XP ACCUMULATION</div>
+                    <div className="text-white font-semibold text-sm">Experience Points (XP)</div>
+                    <p className="text-[11px] text-[#86868B]">Earned per completed lesson, quiz, and speech test.</p>
+                  </div>
+                  <div className="p-3 rounded-2xl bg-black/40 border border-white/5 space-y-1">
+                    <div className="text-[10px] font-mono text-[#0A84FF]">VOCABULARY MASTERY</div>
+                    <div className="text-white font-semibold text-sm">Mastered Words Counter</div>
+                    <p className="text-[11px] text-[#86868B]">Tracks active retained vocabulary over time.</p>
+                  </div>
+                  <div className="p-3 rounded-2xl bg-black/40 border border-white/5 space-y-1">
+                    <div className="text-[10px] font-mono text-[#BF5AF2]">DAILY PROMPTS</div>
+                    <div className="text-white font-semibold text-sm">Word of the Day</div>
+                    <p className="text-[11px] text-[#86868B]">Curated daily term with pronunciation and usage examples.</p>
+                  </div>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-black/40 border border-white/5 text-xs text-[#86868B]">
+                  Quick sentence practice widgets allow students to drill spontaneous translation in seconds directly from their home dashboard.
+                </div>
+              </div>
+
+              {/* Subsection 3: VaaniAI — Intelligent Personal Coach */}
+              <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3">
+                <div className="flex items-center gap-2 text-white font-bold text-lg">
+                  <Sparkles className="w-5 h-5 text-[#BF5AF2]" />
+                  <h3>VaaniAI — Personal Hindi Coach</h3>
+                </div>
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  A key pillar of the platform is <strong className="text-white">VaaniAI</strong>, an interactive AI assistant acting as a personal Hindi coach and conversation partner.
+                </p>
+                <div className="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2 text-xs">
+                  <div className="text-white font-semibold flex items-center gap-1.5">
+                    <Bot className="w-4 h-4 text-[#BF5AF2]" />
+                    <span>Tiered Google Gemini Architecture</span>
+                  </div>
+                  <p className="text-[#A1A1A6] leading-relaxed">
+                    Configured with cascading failover across <strong className="text-white">Gemini 1.5 Flash</strong>, <strong className="text-white">Gemini 2.0</strong>, and <strong className="text-white">Gemini 2.5 Flash</strong> to guarantee low latency and uninterrupted uptime.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    <span className="px-2 py-0.5 rounded-md bg-[#BF5AF2]/10 text-[#BF5AF2] text-[10px] font-mono">Hindi (Devanagari)</span>
+                    <span className="px-2 py-0.5 rounded-md bg-[#BF5AF2]/10 text-[#BF5AF2] text-[10px] font-mono">Romanized Hinglish</span>
+                    <span className="px-2 py-0.5 rounded-md bg-[#BF5AF2]/10 text-[#BF5AF2] text-[10px] font-mono">English Explanations</span>
+                  </div>
+                </div>
+                <p className="text-xs text-[#86868B] leading-relaxed">
+                  Integrated with the <strong className="text-white">Web Speech API</strong> for native browser speech-to-text (STT) and text-to-speech (TTS), allowing learners to speak their questions aloud and listen to correct pronunciation without costly 3rd-party voice lock-in.
+                </p>
+              </div>
+
+              {/* Subsection 4: OCR Grammar Workflow & Study Library */}
+              <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3">
+                <div className="flex items-center gap-2 text-white font-bold text-lg">
+                  <FileText className="w-5 h-5 text-[#30D158]" />
+                  <h3>OCR Grammar Ingestion & 26-Chapter Library</h3>
+                </div>
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  To bypass the bottleneck of manually re-typing physical educational materials, HindiMate introduces an <strong className="text-white">OCR-based grammar learning pipeline</strong>.
+                </p>
+                <div className="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2 text-xs">
+                  <p className="text-[#A1A1A6] leading-relaxed">
+                    Existing grammar books and standardized exam curriculum available in PDF format (such as the <strong className="text-white">26 chapters from Drishti IAS DLP</strong>) are extracted using OCR and converted into responsive digital lessons.
+                  </p>
+                  <div className="flex items-center gap-2 text-[#30D158] font-mono text-[11px] pt-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                    <span>Textbook PDF &rarr; OCR Extraction &rarr; Interactive Lessons & TTS Audio</span>
+                  </div>
+                </div>
+                <p className="text-xs text-[#86868B] leading-relaxed">
+                  Learners can read chapters directly on the platform, adjust typography on the fly, trigger audio read-alouds, or query VaaniAI to explain difficult Sanskritized Hindi phrases.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* 1B. CONCISE TECH STACK FRAMING */}
+          <section className="space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <div>
+                <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
+                  System Engineering
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  Tech Stack Architecture
+                </h2>
+              </div>
+              <span className="text-xs font-mono text-[#30D158] bg-[#30D158]/10 px-3 py-1 rounded-full border border-[#30D158]/20">
+                4 Distinct Layers
+              </span>
             </div>
 
-            {/* Google Gemini API Integration Card */}
-            <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3">
-              <div className="flex items-center gap-2 text-white font-bold text-lg">
-                <Sparkles className="w-5 h-5 text-[#BF5AF2]" />
-                <h3>Google Gemini API (VaaniAI)</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Layer 1: Frontend */}
+              <div className="p-5 rounded-3xl ios-glass border border-white/10 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-[#0A84FF] bg-[#0A84FF]/10 px-2 py-0.5 rounded-full">LAYER 01</span>
+                    <Code className="w-4 h-4 text-[#0A84FF]" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">Frontend & UI</h3>
+                  <p className="text-xs text-[#A1A1A6] leading-relaxed">
+                    Modern Single Page Application built for instant interactivity, smooth animations, and responsive layout.
+                  </p>
+                </div>
+                <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs font-mono text-[#F5F5F7]">
+                  <div className="flex items-center justify-between"><span>React</span><span className="text-[#86868B]">19 SPA</span></div>
+                  <div className="flex items-center justify-between"><span>Vite</span><span className="text-[#86868B]">6.4</span></div>
+                  <div className="flex items-center justify-between"><span>Tailwind CSS</span><span className="text-[#86868B]">3.4</span></div>
+                  <div className="flex items-center justify-between"><span>Framer Motion</span><span className="text-[#86868B]">11</span></div>
+                  <div className="flex items-center justify-between"><span>React Router</span><span className="text-[#86868B]">DOM 7</span></div>
+                </div>
               </div>
-              <p className="text-xs sm:text-sm text-[#A1A1A6] leading-relaxed">
-                We also integrated the <strong className="text-white">Google Gemini API</strong> to introduce AI-assisted language capabilities into the application. Gemini was used for natural-language processing and generating structured responses.
-              </p>
-              <div className="p-3.5 rounded-2xl bg-black/40 border border-white/5 text-xs text-[#86868B]">
-                This allows the platform to provide a more interactive and adaptable learning experience rather than relying entirely on predefined content.
-              </div>
-            </div>
 
-            {/* Web Speech API Voice Learning Card */}
-            <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3">
-              <div className="flex items-center gap-2 text-white font-bold text-lg">
-                <TrendingUp className="w-5 h-5 text-[#30D158]" />
-                <h3>Voice-Based Learning & Pronunciation</h3>
+              {/* Layer 2: AI & Voice */}
+              <div className="p-5 rounded-3xl ios-glass border border-white/10 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-[#BF5AF2] bg-[#BF5AF2]/10 px-2 py-0.5 rounded-full">LAYER 02</span>
+                    <Sparkles className="w-4 h-4 text-[#BF5AF2]" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">AI & Voice Engine</h3>
+                  <p className="text-xs text-[#A1A1A6] leading-relaxed">
+                    Tiered LLM cognitive engine combined with browser-native speech synthesis for zero-cost audio streaming.
+                  </p>
+                </div>
+                <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs font-mono text-[#F5F5F7]">
+                  <div className="flex items-center justify-between"><span>Google Gemini API</span><span className="text-[#86868B]">Flash 1.5</span></div>
+                  <div className="flex items-center justify-between"><span>Failover Tier</span><span className="text-[#86868B]">Gemini 2.0 / 2.5</span></div>
+                  <div className="flex items-center justify-between"><span>Web Speech API</span><span className="text-[#86868B]">Browser STT</span></div>
+                  <div className="flex items-center justify-between"><span>Speech Synthesis</span><span className="text-[#86868B]">Native TTS</span></div>
+                  <div className="flex items-center justify-between"><span>Vendor Lock-in</span><span className="text-[#30D158]">Zero Cost</span></div>
+                </div>
               </div>
-              <p className="text-xs sm:text-sm text-[#A1A1A6] leading-relaxed">
-                To make learning more connected to pronunciation, HindiMate uses the <strong className="text-white">Web Speech API</strong> to provide browser-based text-to-speech.
-              </p>
-              <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
-                Hindi text displayed on the platform can be spoken aloud in real time, helping learners connect the written form of a word or sentence with how it authentically sounds.
-              </p>
-            </div>
 
-            {/* Docker, Nginx & AWS EC2 Cloud Deployment Card */}
-            <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3">
-              <div className="flex items-center gap-2 text-white font-bold text-lg">
-                <Building2 className="w-5 h-5 text-[#FF9900]" />
-                <h3>Full-Stack & Cloud Hosting Architecture</h3>
+              {/* Layer 3: Infrastructure */}
+              <div className="p-5 rounded-3xl ios-glass border border-white/10 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-[#FF9F0A] bg-[#FF9F0A]/10 px-2 py-0.5 rounded-full">LAYER 03</span>
+                    <Server className="w-4 h-4 text-[#FF9F0A]" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">Cloud Infrastructure</h3>
+                  <p className="text-xs text-[#A1A1A6] leading-relaxed">
+                    Lightweight containerized microservice deployed live to Amazon Web Services in the Mumbai region.
+                  </p>
+                </div>
+                <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs font-mono text-[#F5F5F7]">
+                  <div className="flex items-center justify-between"><span>Container</span><span className="text-[#86868B]">Docker</span></div>
+                  <div className="flex items-center justify-between"><span>Web Server</span><span className="text-[#86868B]">Nginx Alpine</span></div>
+                  <div className="flex items-center justify-between"><span>Image Footprint</span><span className="text-[#30D158]">26.3 MB</span></div>
+                  <div className="flex items-center justify-between"><span>Cloud Host</span><span className="text-[#86868B]">AWS EC2</span></div>
+                  <div className="flex items-center justify-between"><span>AWS Region</span><span className="text-[#86868B]">ap-south-1</span></div>
+                </div>
               </div>
-              <p className="text-xs sm:text-sm text-[#A1A1A6] leading-relaxed">
-                The platform itself was built using <strong className="text-white">React and Vite</strong> to create a fast, component-based web application, while <strong className="text-white">Tailwind CSS and Framer Motion</strong> make the interface responsive, visually engaging, and interactive.
-              </p>
-              <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
-                For deployment, we used <strong className="text-white">Docker</strong> to package the application consistently and <strong className="text-white">Nginx</strong> to serve the production build, hosted live on <strong className="text-white">AWS EC2</strong>.
-              </p>
+
+              {/* Layer 4: CI/CD & DevOps */}
+              <div className="p-5 rounded-3xl ios-glass border border-white/10 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-[#30D158] bg-[#30D158]/10 px-2 py-0.5 rounded-full">LAYER 04</span>
+                    <GitBranch className="w-4 h-4 text-[#30D158]" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">CI/CD & DevOps</h3>
+                  <p className="text-xs text-[#A1A1A6] leading-relaxed">
+                    Continuous delivery pipeline building, packaging, and deploying releases automatically upon main merge.
+                  </p>
+                </div>
+                <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs font-mono text-[#F5F5F7]">
+                  <div className="flex items-center justify-between"><span>CI/CD Runner</span><span className="text-[#86868B]">GitHub Actions</span></div>
+                  <div className="flex items-center justify-between"><span>Registry</span><span className="text-[#86868B]">Docker Hub</span></div>
+                  <div className="flex items-center justify-between"><span>VCS</span><span className="text-[#86868B]">Git & GitHub</span></div>
+                  <div className="flex items-center justify-between"><span>Deployment</span><span className="text-[#86868B]">EC2 Pull & Run</span></div>
+                  <div className="flex items-center justify-between"><span>Pipeline Status</span><span className="text-[#30D158]">Automated</span></div>
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </>
       ) : (
         /* Fallback About for other projects */
         <section className="p-6 sm:p-8 rounded-3xl ios-glass border border-white/10 space-y-4">
@@ -523,41 +747,41 @@ export default function ProjectDetailPage({ project, onBack }) {
           {isJanSathi
             ? 'JanSathi was conceived, architected, designed, and engineered entirely end-to-end by me (Raghavendra Waggar). Every single component across the frontend interfaces, backend services, GIS mapping systems, AI agent workflows, and database models was developed by me.'
             : isHindiMate
-            ? 'HindiMate was developed collaboratively by seven members — Yash, Nischay, Utkarsh, Shaurya, Tenzing, and me. My primary contributions focused on system architecture, Docker and version management, AWS deployment, OCR integration, and text-to-speech.'
+            ? 'HindiMate was developed collaboratively by a team of seven members under the IBM SkillsBuild Internship Program. My primary contribution was building the efficient workflow by creating the technical architecture connecting frontend and backend, containerizing the project into Docker, and deploying it on AWS EC2 with Nginx.'
             : project.myRole}
         </p>
 
         {isHindiMate && (
           <div className="space-y-4">
             <p className="text-xs sm:text-sm text-[#A1A1A6] leading-relaxed">
-              I worked on how the different parts of the application fit together, helped containerize and manage the application, contributed to the OCR-based learning workflow, integrated voice functionality, and worked on deploying the final application to AWS. This allowed me to work not just on individual features, but also on the infrastructure and integration required to turn the team&apos;s work into a functioning product.
+              I designed the technical architecture bridging React client modules with AI inference and OCR services, containerized the full stack into Docker with Nginx, and managed the production cloud deployment on AWS EC2.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
               {[
                 {
-                  title: 'System Architecture & Integration',
-                  detail: 'Designed how frontend modules, Gemini API endpoints, OCR pipelines, and routing fit together into a cohesive web platform.',
+                  title: 'Technical Architecture & Pipeline',
+                  detail: 'Formulated the end-to-end technical architecture connecting the React frontend, Gemini API failover services, OCR workflows, and client state into an efficient workflow.',
                 },
                 {
-                  title: 'Docker & Version Management',
-                  detail: 'Containerized the entire application with Docker multi-stage builds, ensuring reproducible development and deployment environments.',
+                  title: 'Docker Containerization',
+                  detail: 'Containerized the complete application stack with Docker multi-stage builds on Nginx Alpine, achieving an ultra-light 26.3MB production image footprint.',
                 },
                 {
                   title: 'AWS EC2 & Nginx Deployment',
-                  detail: 'Configured and launched the production cloud instance on AWS EC2, with Nginx reverse proxy serving optimized client bundles.',
-                },
-                {
-                  title: 'OCR-Based Grammar Workflow',
-                  detail: 'Contributed to the Optical Character Recognition pipeline converting static PDF Hindi grammar textbooks into structured digital lessons.',
+                  detail: 'Configured and launched the production cloud instance on AWS EC2 (Mumbai region ap-south-1), configuring Nginx reverse proxy serving live at http://13.204.64.226.',
                 },
                 {
                   title: 'Web Speech API Voice Integration',
-                  detail: 'Integrated browser-native text-to-speech audio streams allowing real-time voice pronunciation for Devanagari script and vocabulary.',
+                  detail: 'Integrated browser-native speech synthesis and voice recognition, providing real-time Devanagari pronunciation with zero external vendor dependencies.',
                 },
                 {
-                  title: 'Collaborative Team Engineering',
-                  detail: 'Coordinated features and repository integration across all seven teammates (Yash, Nischay, Utkarsh, Shaurya, Tenzing, and Raghavendra).',
+                  title: 'OCR Grammar Ingestion Pipeline',
+                  detail: 'Contributed to the Optical Character Recognition pipeline converting physical Hindi grammar PDF books into structured digital exercises.',
+                },
+                {
+                  title: 'Team Git Workflow & Version Control',
+                  detail: 'Coordinated repository branching, version control standards, and feature integration across all seven teammates on the project.',
                 },
               ].map((item, idx) => (
                 <div key={idx} className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-1.5">
@@ -569,18 +793,16 @@ export default function ProjectDetailPage({ project, onBack }) {
                 </div>
               ))}
             </div>
-          </div>
-        )}
 
-        {isHindiMate && (
-          <div className="p-6 rounded-3xl bg-gradient-to-br from-[#1c1812] to-[#121214] border border-[#FF9F0A]/25 space-y-3 mt-4">
-            <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#FF9F0A]" />
-              The Overall Experience
-            </h3>
-            <p className="text-xs sm:text-sm text-[#E5E5EA] leading-relaxed">
-              HindiMate brought together <strong className="text-white">language learning, frontend development, AI, OCR, text-to-speech, containerization, and cloud deployment</strong> in a single project. What made the experience particularly valuable for me was working on a project where different technologies had to work together rather than being developed in isolation. It gave me practical experience with collaborative development, system architecture, deployment, and integrating AI and other technologies into a real-world application.
-            </p>
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#1c1812] to-[#121214] border border-[#FF9F0A]/25 space-y-3 mt-4">
+              <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#FF9F0A]" />
+                The Engineering Takeaway
+              </h3>
+              <p className="text-xs sm:text-sm text-[#E5E5EA] leading-relaxed">
+                HindiMate united <strong className="text-white">language acquisition, modern frontend development, AI orchestration, OCR, text-to-speech, Docker containerization, and AWS cloud deployment</strong>. What made the experience particularly valuable was establishing the technical framework that connected every layer—turning independent code contributions into a reliable, containerized production web application.
+              </p>
+            </div>
           </div>
         )}
 
@@ -624,8 +846,83 @@ export default function ProjectDetailPage({ project, onBack }) {
         )}
       </section>
 
+      {/* 2B. TECHNICAL ARCHITECTURE BLUEPRINT (FOR HINDIMATE) */}
+      {isHindiMate && (
+        <section className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-white/10">
+            <div>
+              <span className="text-xs font-mono text-[#FF9F0A] uppercase tracking-wider block mb-1">
+                System Blueprint
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Technical Architecture & Workflow
+              </h2>
+              <p className="text-xs sm:text-sm text-[#86868B] mt-1">
+                Architectural blueprint connecting frontend React SPA, State/Router layer, Gemini API tiered failover, and Docker/Nginx on AWS EC2.
+              </p>
+            </div>
+
+            <button
+              onClick={() =>
+                setSelectedImage({
+                  title: 'HindiMate Technical Architecture Blueprint',
+                  category: 'System Blueprint',
+                  file: '/projects/hindimate/architecture.png',
+                  description:
+                    'Detailed full-system architecture detailing the Presentation Layer, State & Routing Layer, Cognitive Engine with tiered Gemini API fallback, and the AWS EC2 / Docker containerized infrastructure.'
+                })
+              }
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-all shrink-0"
+            >
+              <Maximize2 className="w-3.5 h-3.5" />
+              <span>Enlarge Blueprint</span>
+            </button>
+          </div>
+
+          {/* Architecture Diagram Frame */}
+          <div className="rounded-3xl ios-glass border border-white/15 overflow-hidden shadow-2xl bg-black/60">
+            <div className="p-4 bg-black/50 border-b border-white/10 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                <span className="ml-2 text-xs font-mono text-[#F5F5F7]">HindiMate_Technical_Architecture.png</span>
+              </div>
+              <span className="text-[11px] font-mono text-[#FF9F0A] bg-[#FF9F0A]/10 px-2.5 py-0.5 rounded-full border border-[#FF9F0A]/20">
+                System Specification
+              </span>
+            </div>
+
+            <div
+              onClick={() =>
+                setSelectedImage({
+                  title: 'HindiMate Technical Architecture Blueprint',
+                  category: 'System Blueprint',
+                  file: '/projects/hindimate/architecture.png',
+                  description:
+                    'Detailed full-system architecture detailing the Presentation Layer, State & Routing Layer, Cognitive Engine with tiered Gemini API fallback, and the AWS EC2 / Docker containerized infrastructure.'
+                })
+              }
+              className="p-4 sm:p-6 cursor-pointer relative flex items-center justify-center bg-black/40 group/arch"
+            >
+              <img
+                src="/projects/hindimate/architecture.png"
+                alt="HindiMate Technical Architecture Blueprint"
+                className="max-h-[520px] w-auto object-contain rounded-2xl border border-white/10 transition-transform group-hover/arch:scale-[1.01]"
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/arch:opacity-100 transition-opacity flex items-center justify-center">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 text-white text-xs font-medium backdrop-blur-md border border-white/20 shadow-xl">
+                  <Maximize2 className="w-4 h-4" />
+                  <span>Click to Inspect Full Blueprint</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 3. ACTUAL SCREENSHOTS GALLERY FROM USER PROVIDED DIRECTORY */}
-      {isJanSathi && (
+      {(isJanSathi || isHindiMate) && (
         <section className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-white/10">
             <div>
@@ -633,10 +930,12 @@ export default function ProjectDetailPage({ project, onBack }) {
                 Visual Inspection
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Actual Project Screenshots ({JANSATHI_SCREENSHOTS.length})
+                Actual Project Screenshots ({activeScreenshots.length})
               </h2>
               <p className="text-xs sm:text-sm text-[#86868B] mt-1">
-                Captured directly from the deployed JanSathi application, showcasing officer telemetry, AI hubs, and citizen forms.
+                {isJanSathi
+                  ? 'Captured directly from the deployed JanSathi application, showcasing officer telemetry, AI hubs, and citizen forms.'
+                  : 'Captured directly from the deployed HindiMate application on AWS EC2, showcasing student dashboards, modular curriculum, 26-chapter library, and VaaniAI.'}
               </p>
             </div>
 
@@ -705,84 +1004,39 @@ export default function ProjectDetailPage({ project, onBack }) {
               </div>
             ))}
           </div>
-        </section>
-      )}
 
-      {/* 3B. HindiMate Interactive Learning Modules & AWS Live Banner */}
-      {isHindiMate && (
-        <section className="space-y-6">
-          <div className="pb-3 border-b border-white/10">
-            <span className="text-xs font-mono text-[#FF9F0A] uppercase tracking-wider block mb-1">
-              Visual System Tour
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Interactive System Components & OCR Workflows
-            </h2>
-            <p className="text-xs sm:text-sm text-[#86868B] mt-1">
-              Interactive learning modules, Web Speech API audio synthesis board, and VaaniAI conversational engine.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-[#FF9F0A] px-2.5 py-0.5 rounded-full bg-[#FF9F0A]/10 border border-[#FF9F0A]/20">
-                  Voice Synthesis Board
-                </span>
-                <span className="text-xs font-mono text-[#86868B]">Web Speech API</span>
+          {/* Live Deployment Callout Banner (For HindiMate) */}
+          {isHindiMate && (
+            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#1c1810] to-[#121214] border border-[#FF9F0A]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-2xl mt-6">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#30D158] animate-pulse" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#30D158]">
+                    Live on AWS EC2 Cloud
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-white">Experience HindiMate Live</h3>
+                <p className="text-xs sm:text-sm text-[#86868B]">
+                  Containerized with Docker and served with Nginx at <strong className="text-white">http://13.204.64.226</strong>.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-white">Devanagari Phonetics & Pronunciation Board</h3>
-              <ProjectMockup type="hindimate-script" title="HindiMate — Interactive Phonetics Board" />
-              <p className="text-xs text-[#A1A1A6] leading-relaxed">
-                Allows learners to click on Hindi vowels (स्वर), consonants (व्यंजन), and combined matras to hear browser-synthesized native audio in real time.
-              </p>
-            </div>
 
-            <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-[#BF5AF2] px-2.5 py-0.5 rounded-full bg-[#BF5AF2]/10 border border-[#BF5AF2]/20">
-                  Adaptive AI Tutor
-                </span>
-                <span className="text-xs font-mono text-[#86868B]">Google Gemini API</span>
-              </div>
-              <h3 className="text-base font-bold text-white">VaaniAI Conversational Engine</h3>
-              <ProjectMockup type="hindimate-chat" title="HindiMate — VaaniAI Dialogue Simulator" />
-              <p className="text-xs text-[#A1A1A6] leading-relaxed">
-                Adaptive conversational drill simulator powered by Gemini API, offering real-time grammatical breakdowns and vocabulary expansion.
-              </p>
+              <a
+                href="http://13.204.64.226"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FF9F0A] hover:bg-[#FFB020] text-black font-semibold text-xs tracking-wide shadow-lg shadow-amber-500/25 shrink-0 transition-all hover:scale-105"
+              >
+                <span>Launch HindiMate Live</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
-          </div>
-
-          {/* Live Deployment Callout Banner */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#1c1810] to-[#121214] border border-[#FF9F0A]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-2xl">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#30D158] animate-pulse" />
-                <span className="text-xs font-mono uppercase tracking-wider text-[#30D158]">
-                  Live on AWS EC2 Cloud
-                </span>
-              </div>
-              <h3 className="text-xl font-bold text-white">Experience HindiMate Live</h3>
-              <p className="text-xs sm:text-sm text-[#86868B]">
-                Containerized with Docker and served with Nginx at <strong className="text-white">http://13.204.64.226</strong>.
-              </p>
-            </div>
-
-            <a
-              href="http://13.204.64.226"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FF9F0A] hover:bg-[#FFB020] text-black font-semibold text-xs tracking-wide shadow-lg shadow-amber-500/25 shrink-0 transition-all hover:scale-105"
-            >
-              <span>Launch HindiMate Live</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
-          </div>
+          )}
         </section>
       )}
 
       {/* 4. IN-BUILT PDF VIEWER SECTION (AS REQUESTED: VIEWED ON WEBSITE WITHOUT EXTERNAL FILE) */}
-      {isJanSathi && (
+      {(isJanSathi || isHindiMate) && (
         <section className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-white/10">
             <div>
@@ -793,35 +1047,39 @@ export default function ProjectDetailPage({ project, onBack }) {
                 In-Built PDF Viewer
               </h2>
               <p className="text-xs sm:text-sm text-[#86868B] mt-1">
-                Read the official Project Build Report and AI-generated Municipal Operations PDF directly inside the website.
+                {isJanSathi
+                  ? 'Read the official Project Build Report and AI-generated Municipal Operations PDF directly inside the website.'
+                  : 'Read the comprehensive 24-page HindiMate Capstone Project Report directly inside the website.'}
               </p>
             </div>
 
-            {/* Tab Selector for Both PDFs */}
-            <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/40 border border-white/10">
-              <button
-                onClick={() => setActivePdfTab('report')}
-                className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  activePdfTab === 'report'
-                    ? 'bg-[#0A84FF] text-white shadow-md shadow-blue-500/25'
-                    : 'text-[#86868B] hover:text-white'
-                }`}
-              >
-                <FileText className="w-3.5 h-3.5" />
-                <span>Project Build Report (6 Pages)</span>
-              </button>
-              <button
-                onClick={() => setActivePdfTab('sample')}
-                className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  activePdfTab === 'sample'
-                    ? 'bg-[#0A84FF] text-white shadow-md shadow-blue-500/25'
-                    : 'text-[#86868B] hover:text-white'
-                }`}
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Daily Operations Generated PDF</span>
-              </button>
-            </div>
+            {/* Tab Selector for Both PDFs (JanSathi only) */}
+            {isJanSathi && (
+              <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/40 border border-white/10">
+                <button
+                  onClick={() => setActivePdfTab('report')}
+                  className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                    activePdfTab === 'report'
+                      ? 'bg-[#0A84FF] text-white shadow-md shadow-blue-500/25'
+                      : 'text-[#86868B] hover:text-white'
+                  }`}
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Project Build Report (6 Pages)</span>
+                </button>
+                <button
+                  onClick={() => setActivePdfTab('sample')}
+                  className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                    activePdfTab === 'sample'
+                      ? 'bg-[#0A84FF] text-white shadow-md shadow-blue-500/25'
+                      : 'text-[#86868B] hover:text-white'
+                  }`}
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Daily Operations Generated PDF</span>
+                </button>
+              </div>
+            )}
           </div>
 
           {/* In-Built PDF Frame Container */}
@@ -832,17 +1090,21 @@ export default function ProjectDetailPage({ project, onBack }) {
                 <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
                 <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
                 <span className="ml-2 text-xs font-mono text-white">
-                  {activePdfTab === 'report'
-                    ? 'Jansathi_Project_Report.pdf — Authored by Raghavendra Waggar'
-                    : 'Daily_City_Operations_Report_JS-OP-67260.pdf — Gemini AI Engine Export'}
+                  {isJanSathi
+                    ? activePdfTab === 'report'
+                      ? 'Jansathi_Project_Report.pdf — Authored by Raghavendra Waggar'
+                      : 'Daily_City_Operations_Report_JS-OP-67260.pdf — Gemini AI Engine Export'
+                    : 'HindiMate_Project_Report.pdf — IBM SkillsBuild Capstone Project Report'}
                 </span>
               </div>
 
               <a
                 href={
-                  activePdfTab === 'report'
-                    ? '/projects/jansathi/Jansathi_Project_Report.pdf'
-                    : '/projects/jansathi/daily_city_operations_sample.pdf'
+                  isJanSathi
+                    ? activePdfTab === 'report'
+                      ? '/projects/jansathi/Jansathi_Project_Report.pdf'
+                      : '/projects/jansathi/daily_city_operations_sample.pdf'
+                    : '/projects/hindimate/HindiMate_Project_Report.pdf'
                 }
                 download
                 className="inline-flex items-center gap-1 text-xs text-[#0A84FF] hover:text-white transition-colors"
@@ -856,11 +1118,13 @@ export default function ProjectDetailPage({ project, onBack }) {
             <div className="w-full h-[750px] sm:h-[850px] bg-neutral-900">
               <iframe
                 src={
-                  activePdfTab === 'report'
-                    ? '/projects/jansathi/Jansathi_Project_Report.pdf#toolbar=1&navpanes=0'
-                    : '/projects/jansathi/daily_city_operations_sample.pdf#toolbar=1&navpanes=0'
+                  isJanSathi
+                    ? activePdfTab === 'report'
+                      ? '/projects/jansathi/Jansathi_Project_Report.pdf#toolbar=1&navpanes=0'
+                      : '/projects/jansathi/daily_city_operations_sample.pdf#toolbar=1&navpanes=0'
+                    : '/projects/hindimate/HindiMate_Project_Report.pdf#toolbar=1&navpanes=0'
                 }
-                title="JanSathi Embedded PDF Document"
+                title={isJanSathi ? "JanSathi Embedded PDF Document" : "HindiMate Embedded PDF Document"}
                 className="w-full h-full border-none"
               />
             </div>
