@@ -101,22 +101,22 @@ export default function TechStack() {
                 </div>
 
                 {/* Horizontal Flow of Technologies with Icons */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {category.skills.map((skill) => (
                     <div
                       key={skill.name}
-                      className="p-3 rounded-2xl bg-black/40 hover:bg-white/[0.05] border border-white/5 hover:border-white/15 transition-all flex items-center gap-3 group"
+                      className="p-3.5 rounded-2xl bg-black/40 hover:bg-white/[0.05] border border-white/5 hover:border-white/15 transition-all flex items-start gap-3.5 group min-h-[72px]"
                     >
-                      <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                      <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform mt-0.5">
                         <TechIcon name={skill.name} className="w-4 h-4" />
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between gap-1 mb-0.5">
-                          <span className="text-xs font-semibold text-[#F5F5F7] tracking-tight truncate">
+                          <span className="text-xs font-semibold text-[#F5F5F7] tracking-tight leading-snug">
                             {skill.name}
                           </span>
                         </div>
-                        <p className="text-[11px] text-[#86868B] leading-snug line-clamp-1 group-hover:text-[#A1A1A6] transition-colors">
+                        <p className="text-[11px] text-[#86868B] leading-snug group-hover:text-[#A1A1A6] transition-colors mt-0.5">
                           {skill.context}
                         </p>
                       </div>
