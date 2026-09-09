@@ -55,35 +55,36 @@ export const projects = [
   {
     id: "tnp-platform",
     title: "TNP / TPC Platform",
-    subtitle: "Institutional Placement & Training Automation System",
+    subtitle: "Workflow-Driven Training & Placement Lifecycle Automation Platform",
     category: "Institutional Systems / Workflow Automation",
     tag: "SIH Internal Round",
     status: "SIH Internal Round Selection",
     tagColor: "blue",
     featured: true,
     description:
-      "End-to-end recruitment management and policy automation platform built to streamline university placement drives and eligibility filtering.",
+      "Workflow-driven Training and Placement Management Platform designed to centralize and automate the complete placement lifecycle. Built around the 3-Model Engine System, role-based dashboards (TPO, Student, Recruiter, Faculty), academic record verification, and semantic student-to-job matching via PostgreSQL + pgvector.",
     shortDescription:
-      "An end-to-end recruitment management system designed to automate university placement drives, eligibility filtering, and institutional policy enforcement.",
+      "A workflow-driven placement management platform centralizing drives, multi-criteria eligibility filtering, institutional offer policies, and semantic student-to-job matching via PostgreSQL + pgvector.",
     problem:
-      "University placement drives suffer from manual spreadsheet screening, missed eligibility criteria (CGPA/backlogs), and policy violations like student offer hoarding that disadvantage peers.",
+      "University placement drives suffer from manual spreadsheet screening, missed eligibility criteria (CGPA cutoffs, active backlogs, attendance), slow multi-stakeholder coordination, and policy violations like student offer hoarding that unfairly disadvantage peers.",
     keyFeatures: [
-      "Automated multi-criteria student screening (CGPA thresholds, active backlogs, department, graduation year)",
-      "Strict institutional rule enforcement: One-Offer-One-Student and Dream-Offer policy validation",
-      "Centralized student resume bank with verified academic records and application history",
-      "Asynchronous background worker pipeline powered by Celery and Redis for peak drive loads",
-      "Structured placement analytics and aggregate metrics exported directly for NIRF accreditation"
+      "Deterministic 3-Model Engine System: Eligibility Engine, Institutional Policy Engine, and Placement Workflow Engine",
+      "Vector Semantic Search: PostgreSQL with pgvector extension running cosine similarity between candidate profiles/resumes and job descriptions",
+      "Strict Policy Enforcement: Automated One-Offer-One-Student rule, Dream & Super-Dream tier exemptions, and anti-offer-hoarding locks",
+      "Role-Based Dashboards (RBAC): Dedicated secure interfaces for TPOs, Recruiters, Faculty Coordinators, and Students via FastAPI JWT",
+      "Academic & Attendance Verification: Direct integration with institutional student records to guarantee tamper-proof eligibility auditing",
+      "Asynchronous Background Workers: Redis message queue and Celery workers for bulk resume text extraction and embedding generation"
     ],
-    tech: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Celery", "Docker", "JWT"],
+    tech: ["Next.js", "FastAPI", "PostgreSQL", "pgvector", "Redis", "Celery", "Docker", "JWT"],
     myRole:
-      "Designed the relational database schema in PostgreSQL, built the FastAPI backend services with JWT authentication, and implemented the eligibility filtering engine.",
+      "Lead Backend Architect & Schema Designer. Designed the PostgreSQL relational schema, implemented the 3-Model Engine System (Eligibility, Policy, Placement Workflow), built FastAPI RBAC endpoints, and integrated PostgreSQL + pgvector for semantic candidate matching.",
     outcome:
-      "Cleared the university internal screening rounds for Smart India Hackathon (SIH) under the Civic & Institutional Technology track.",
+      "Selected in the university internal screening rounds for Smart India Hackathon (SIH) under the Civic & Institutional Technology track.",
     liveUrl: null,
     githubUrl: "https://github.com/Raghavendra1204",
-    reportUrl: null,
+    reportUrl: "/projects/tnp/tnp_project_proposal.pdf",
     futureImprovements:
-      "Add automated resume parsing to extract student skill profiles and match them with incoming company job descriptions.",
+      "Integrate automated multi-format PDF/DOCX resume parsing pipeline with real-time OCR extraction and candidate skill-gap recommendations.",
     screenshots: [
       {
         id: "eligibility-engine",

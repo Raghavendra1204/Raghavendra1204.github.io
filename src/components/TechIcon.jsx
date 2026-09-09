@@ -513,6 +513,79 @@ export default function TechIcon({ name = '', className = 'w-4 h-4' }) {
     );
   }
 
+  // 43. Next.js
+  if (norm.includes('next')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="11" fill="#000" stroke="#fff" strokeWidth="1" />
+        <path d="M8 8v8M16 8v8l-8-8" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  // 44. FastAPI
+  if (norm.includes('fastapi')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="11" fill="#009688" fillOpacity="0.2" stroke="#059669" strokeWidth="1" />
+        <path d="M13 3L6 14h6l-1 7 7-11h-6l1-7z" fill="#10B981" />
+      </svg>
+    );
+  }
+
+  // 45. PostgreSQL / Postgres
+  if (norm.includes('postgres') || norm.includes('psql')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+          fill="#336791"
+        />
+      </svg>
+    );
+  }
+
+  // 46. pgvector
+  if (norm.includes('pgvector') || norm.includes('vector')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#38BDF8" strokeWidth="1.8">
+        <circle cx="6" cy="18" r="3" fill="#38BDF8" fillOpacity="0.3" />
+        <circle cx="18" cy="6" r="3" fill="#38BDF8" fillOpacity="0.3" />
+        <circle cx="18" cy="18" r="3" fill="#38BDF8" fillOpacity="0.3" />
+        <path d="M8.5 16.5l7-8.5M9 18h6M18 9v6" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  // 47. Redis
+  if (norm.includes('redis')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#DC382D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  // 48. Celery
+  if (norm.includes('celery')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" fill="#37814A" fillOpacity="0.2" stroke="#37814A" strokeWidth="1.5" />
+        <path d="M12 7v10M8 10l4-3 4 3M8 14l4 3 4-3" stroke="#37814A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  // 49. JWT
+  if (norm.includes('jwt')) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <rect width="20" height="14" x="2" y="5" rx="3" fill="#D63AFF" fillOpacity="0.15" stroke="#D63AFF" strokeWidth="1.5" />
+        <text x="12" y="14.5" textAnchor="middle" fill="#D63AFF" fontSize="7.5" fontWeight="bold">JWT</text>
+      </svg>
+    );
+  }
+
   // Default fallback
   return <Code className={`${className} text-[#86868B]`} />;
 }

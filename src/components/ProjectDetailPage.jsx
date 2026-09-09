@@ -27,8 +27,17 @@ import {
   Zap,
   Code,
   Server,
-  GitBranch,
-  Globe
+  Globe,
+  Database,
+  Search,
+  Sliders,
+  Briefcase,
+  GraduationCap,
+  Lock,
+  Cpu,
+  BarChart3,
+  Filter,
+  ShieldAlert
 } from 'lucide-react';
 
 const JANSATHI_SCREENSHOTS = [
@@ -185,17 +194,20 @@ export default function ProjectDetailPage({ project, onBack }) {
   const [activePdfTab, setActivePdfTab] = useState('report');
   const [selectedImage, setSelectedImage] = useState(null);
   const [screenshotFilter, setScreenshotFilter] = useState('All');
+  const [activeTnpBlueprint, setActiveTnpBlueprint] = useState('architecture');
 
   // Scroll to top upon opening page
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     setScreenshotFilter('All');
+    setActiveTnpBlueprint('architecture');
   }, [project]);
 
   if (!project) return null;
 
   const isJanSathi = project.id === 'jaansathi' || project.id === 'jansathi' || project.title.toLowerCase().includes('jansathi');
   const isHindiMate = project.id === 'hindi-mate' || project.title.toLowerCase().includes('hindimate');
+  const isTnp = project.id === 'tnp-platform' || project.id === 'tnp' || project.title.toLowerCase().includes('tnp');
 
   const activeScreenshots = isJanSathi ? JANSATHI_SCREENSHOTS : isHindiMate ? HINDIMATE_SCREENSHOTS : [];
   const screenshotCategories = isJanSathi
@@ -713,6 +725,325 @@ export default function ProjectDetailPage({ project, onBack }) {
             </div>
           </section>
         </>
+      ) : isTnp ? (
+        <>
+          {/* 1. ABOUT SECTION — THE 3-MODEL ENGINE SYSTEM & LIFECYCLE */}
+          <section className="space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <div>
+                <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
+                  Institutional Placement & Workflow Automation
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  About TNP / TPC Platform
+                </h2>
+              </div>
+              <span className="text-xs font-mono text-[#0A84FF] bg-[#0A84FF]/10 px-3 py-1 rounded-full border border-[#0A84FF]/20">
+                The 3-Model Engine Architecture
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Overview / Introduction Card */}
+              <div className="p-6 sm:p-8 rounded-3xl ios-glass border border-white/10 space-y-4 md:col-span-2 shadow-xl">
+                <div className="flex items-center gap-2.5 text-[#0A84FF]">
+                  <Briefcase className="w-5 h-5" />
+                  <span className="text-xs font-mono uppercase tracking-wider">Placement Lifecycle Automation</span>
+                </div>
+                <p className="text-base sm:text-lg text-[#F5F5F7] leading-relaxed font-normal">
+                  <strong className="text-white font-semibold">TNP</strong> is a workflow-driven Training and Placement Management Platform designed to centralize and automate the complete institutional placement lifecycle. It unifies placement drives, student eligibility filtering, applications, resume banks, job offers, training programs, broadcast notifications, and accreditation reporting into a single deterministic system.
+                </p>
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  The platform is built directly around the actual operational workflow followed by a university Training and Placement Cell (T&amp;PC). TPOs can configure placement drives, define dynamic multi-criteria eligibility cutoffs, monitor student participation, strictly enforce institutional offer policies, coordinate specialized training programs, and generate NIRF-compliant audit reports. Students receive a dedicated workspace to view eligible opportunities, submit verified resumes, monitor their application status across multi-stage rounds, and receive real-time notifications.
+                </p>
+                <div className="p-4 rounded-2xl bg-black/40 border border-[#0A84FF]/20 flex items-start gap-3 text-xs text-[#A1A1A6]">
+                  <CheckCircle2 className="w-4 h-4 text-[#0A84FF] shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-white">Direct Academic Record Integration:</strong> Academic transcripts (CGPA, active/historical backlogs) and attendance logs are seamlessly linked to student accounts, enabling instant, tamper-proof, and fully automated eligibility verification without manual spreadsheet reconciliation.
+                  </span>
+                </div>
+              </div>
+
+              {/* Subsection 1: The 4 Role-Based Workspaces */}
+              <div className="p-6 rounded-3xl ios-glass border border-white/10 space-y-3 md:col-span-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-white font-bold text-lg">
+                    <Users className="w-5 h-5 text-[#0A84FF]" />
+                    <h3>4 Role-Based Stakeholder Workspaces (RBAC)</h3>
+                  </div>
+                  <span className="text-[11px] font-mono text-[#86868B]">FastAPI JWT Guarded</span>
+                </div>
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  TNP provides role-based interfaces tailored to each participant in the placement ecosystem, ensuring isolated privileges and specialized workflows:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
+                  <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+                    <div className="flex items-center gap-2 text-white font-semibold text-xs">
+                      <ShieldCheck className="w-4 h-4 text-[#0A84FF] shrink-0" />
+                      <span>TPO Officers</span>
+                    </div>
+                    <p className="text-xs text-[#86868B] leading-relaxed">
+                      Drive creation, multi-criteria cutoff rule builder, student roster shortlisting, offer policy monitoring, and NIRF export.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+                    <div className="flex items-center gap-2 text-white font-semibold text-xs">
+                      <GraduationCap className="w-4 h-4 text-[#30D158] shrink-0" />
+                      <span>Students</span>
+                    </div>
+                    <p className="text-xs text-[#86868B] leading-relaxed">
+                      Verified resume management, real-time eligible drive feed, 1-click applications, multi-round status tracker, and offer acceptance.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+                    <div className="flex items-center gap-2 text-white font-semibold text-xs">
+                      <Building2 className="w-4 h-4 text-[#FF9F0A] shrink-0" />
+                      <span>Corporate Recruiters</span>
+                    </div>
+                    <p className="text-xs text-[#86868B] leading-relaxed">
+                      Job description (JD) publishing, semantic candidate talent discovery, assessment result uploads, and digital offer rollout.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+                    <div className="flex items-center gap-2 text-white font-semibold text-xs">
+                      <BookOpen className="w-4 h-4 text-[#BF5AF2] shrink-0" />
+                      <span>Faculty Coordinators</span>
+                    </div>
+                    <p className="text-xs text-[#86868B] leading-relaxed">
+                      Departmental student readiness oversight, attendance verification, training program coordination, and performance sign-offs.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Subsection 2: The Deterministic 3-Model Engine System */}
+              <div className="p-6 sm:p-8 rounded-3xl ios-glass border border-white/10 space-y-4 md:col-span-2 shadow-xl bg-gradient-to-br from-[#0c1322] to-[#12141c]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2.5 text-white font-bold text-lg">
+                    <Cpu className="w-5 h-5 text-[#0A84FF]" />
+                    <h3>The Deterministic 3-Model Engine System</h3>
+                  </div>
+                  <span className="text-xs font-mono text-[#30D158] bg-[#30D158]/10 px-3 py-1 rounded-full border border-[#30D158]/20">
+                    High-Reliability Core Architecture
+                  </span>
+                </div>
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  Instead of relying on opaque, unverified automation, TNP is architected around three high-speed deterministic engines that evaluate rules mathematically against verified institutional data:
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+                  {/* Engine 1 */}
+                  <div className="p-5 rounded-2xl bg-black/50 border border-white/10 space-y-2.5 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[10px] font-mono text-[#0A84FF] bg-[#0A84FF]/10 px-2 py-0.5 rounded-full">ENGINE 01</span>
+                        <Filter className="w-4 h-4 text-[#0A84FF]" />
+                      </div>
+                      <h4 className="text-sm font-bold text-white">Eligibility Engine</h4>
+                      <p className="text-xs text-[#A1A1A6] leading-relaxed mt-1">
+                        Dynamic multi-criteria cutoff evaluator executing in milliseconds. Validates candidates against CGPA cutoffs, active/historical backlogs, approved branches/departments, graduation batch, and institutional attendance thresholds.
+                      </p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 text-[11px] font-mono text-[#86868B] space-y-1">
+                      <div className="text-white font-semibold">Rule Evaluation:</div>
+                      <div>• CGPA ≥ threshold (e.g. 7.50)</div>
+                      <div>• Active Backlogs == 0</div>
+                      <div>• Verified Attendance ≥ 75%</div>
+                    </div>
+                  </div>
+
+                  {/* Engine 2 */}
+                  <div className="p-5 rounded-2xl bg-black/50 border border-white/10 space-y-2.5 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[10px] font-mono text-[#FF9F0A] bg-[#FF9F0A]/10 px-2 py-0.5 rounded-full">ENGINE 02</span>
+                        <ShieldAlert className="w-4 h-4 text-[#FF9F0A]" />
+                      </div>
+                      <h4 className="text-sm font-bold text-white">Institutional Policy Engine</h4>
+                      <p className="text-xs text-[#A1A1A6] leading-relaxed mt-1">
+                        Automated institutional rule validator eliminating manual disputes. Strictly enforces the <strong className="text-white">One-Offer-One-Student</strong> policy, freezes standard rights post-placement, and manages Dream &amp; Super-Dream exceptions (e.g. CTC &ge; 2× current offer) to prevent offer hoarding.
+                      </p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 text-[11px] font-mono text-[#86868B] space-y-1">
+                      <div className="text-white font-semibold">Policy Gates:</div>
+                      <div>• Offer Hoarding Lock: ACTIVE</div>
+                      <div>• Dream Offer: CTC &gt; 2× Base</div>
+                      <div>• Student Dispute Rate: 0%</div>
+                    </div>
+                  </div>
+
+                  {/* Engine 3 */}
+                  <div className="p-5 rounded-2xl bg-black/50 border border-white/10 space-y-2.5 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[10px] font-mono text-[#30D158] bg-[#30D158]/10 px-2 py-0.5 rounded-full">ENGINE 03</span>
+                        <Layers className="w-4 h-4 text-[#30D158]" />
+                      </div>
+                      <h4 className="text-sm font-bold text-white">Placement Workflow Engine</h4>
+                      <p className="text-xs text-[#A1A1A6] leading-relaxed mt-1">
+                        Deterministic state machine orchestrating the complete placement drive lifecycle from inception to final offer sign-off with verifiable audit trails.
+                      </p>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 text-[11px] font-mono text-[#86868B] space-y-1">
+                      <div className="text-white font-semibold">5-Stage State Machine:</div>
+                      <div>1. Announcement → 2. Registration</div>
+                      <div>3. Online Tests → 4. Interviews</div>
+                      <div>5. Rollout &amp; Student Acceptance</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Subsection 3: Smart Vector Semantic Search via PostgreSQL + pgvector */}
+              <div className="p-6 sm:p-8 rounded-3xl ios-glass border border-white/10 space-y-4 md:col-span-2 shadow-xl bg-gradient-to-br from-[#0c1824] to-[#12141a]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2.5 text-[#38BDF8]">
+                    <Search className="w-5 h-5" />
+                    <h3 className="text-lg font-bold text-white">
+                      Smart Student-to-Job Matching via PostgreSQL + pgvector
+                    </h3>
+                  </div>
+                  <span className="text-xs font-mono text-[#38BDF8] bg-[#38BDF8]/10 px-3 py-1 rounded-full border border-[#38BDF8]/20">
+                    Vector Semantic Search
+                  </span>
+                </div>
+
+                <p className="text-sm text-[#A1A1A6] leading-relaxed">
+                  Traditional university portals rely on brittle keyword lookups (e.g. matching exact string "Python"). TNP introduces high-dimensional <strong className="text-white">vector semantic search powered natively by PostgreSQL with the pgvector extension</strong>.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                  <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+                    <div className="text-white font-semibold text-xs flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-[#38BDF8]" />
+                      <span>Profile &amp; Resume Vectorization</span>
+                    </div>
+                    <p className="text-xs text-[#86868B] leading-relaxed">
+                      Student profiles, completed coursework, verified technical skills, and extracted resume summaries are converted into dense vector embeddings stored directly inside PostgreSQL using <code className="text-[#38BDF8]">pgvector</code> columns.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+                    <div className="text-white font-semibold text-xs flex items-center gap-2">
+                      <Database className="w-4 h-4 text-[#30D158]" />
+                      <span>Cosine Similarity Job Matching</span>
+                    </div>
+                    <p className="text-xs text-[#86868B] leading-relaxed">
+                      When recruiters post unstructured Job Descriptions (JDs), the system computes cosine similarity vector distance directly in SQL queries (<code className="text-[#30D158]">&lt;=&gt; cosine distance</code>), instantly ranking qualified students and alerting candidates to specific skill gaps.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-black/50 border border-[#38BDF8]/20 text-xs font-mono text-[#A1A1A6] flex items-center justify-between flex-wrap gap-2">
+                  <span>SELECT student_id, 1 - (embedding &lt;=&gt; :jd_vector) AS match_score FROM student_embeddings ORDER BY match_score DESC;</span>
+                  <span className="text-[#30D158] font-bold">~14ms Query Latency</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 1B. CONCISE TECH STACK FRAMING (4 LAYERS) */}
+          <section className="space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <div>
+                <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
+                  System Architecture
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  Tech Stack Architecture
+                </h2>
+              </div>
+              <span className="text-xs font-mono text-[#30D158] bg-[#30D158]/10 px-3 py-1 rounded-full border border-[#30D158]/20">
+                4 Tier Architecture
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Layer 1: Frontend & UI */}
+              <div className="p-5 rounded-3xl ios-glass border border-white/10 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-[#0A84FF] bg-[#0A84FF]/10 px-2 py-0.5 rounded-full">LAYER 01</span>
+                    <Code className="w-4 h-4 text-[#0A84FF]" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">Frontend &amp; UI</h3>
+                  <p className="text-xs text-[#A1A1A6] leading-relaxed">
+                    Modern full-stack App Router client with responsive role-based views for TPOs, Students, Recruiters, and Faculty.
+                  </p>
+                </div>
+                <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs font-mono text-[#F5F5F7]">
+                  <div className="flex items-center justify-between"><span>Next.js</span><span className="text-[#86868B]">14 App Router</span></div>
+                  <div className="flex items-center justify-between"><span>React</span><span className="text-[#86868B]">18 Core</span></div>
+                  <div className="flex items-center justify-between"><span>Tailwind CSS</span><span className="text-[#86868B]">3.4</span></div>
+                  <div className="flex items-center justify-between"><span>TypeScript</span><span className="text-[#86868B]">Strict Types</span></div>
+                  <div className="flex items-center justify-between"><span>Role Dashboards</span><span className="text-[#30D158]">4 Portals</span></div>
+                </div>
+              </div>
+
+              {/* Layer 2: API & Engines */}
+              <div className="p-5 rounded-3xl ios-glass border border-white/10 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full">LAYER 02</span>
+                    <Server className="w-4 h-4 text-[#10B981]" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">API &amp; 3 Engines</h3>
+                  <p className="text-xs text-[#A1A1A6] leading-relaxed">
+                    High-performance Python ASGI backend hosting the deterministic 3-Engine pipeline, JWT auth, and rate limiting.
+                  </p>
+                </div>
+                <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs font-mono text-[#F5F5F7]">
+                  <div className="flex items-center justify-between"><span>FastAPI</span><span className="text-[#86868B]">ASGI Gateway</span></div>
+                  <div className="flex items-center justify-between"><span>3-Engine Core</span><span className="text-[#86868B]">Deterministic</span></div>
+                  <div className="flex items-center justify-between"><span>Auth &amp; RBAC</span><span className="text-[#86868B]">OAuth2 / JWT</span></div>
+                  <div className="flex items-center justify-between"><span>Rate Limiting</span><span className="text-[#86868B]">SlowAPI</span></div>
+                  <div className="flex items-center justify-between"><span>Data Contract</span><span className="text-[#30D158]">Pydantic v2</span></div>
+                </div>
+              </div>
+
+              {/* Layer 3: Database & Vector Search */}
+              <div className="p-5 rounded-3xl ios-glass border border-white/10 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-[#38BDF8] bg-[#38BDF8]/10 px-2 py-0.5 rounded-full">LAYER 03</span>
+                    <Database className="w-4 h-4 text-[#38BDF8]" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">Database &amp; Vector</h3>
+                  <p className="text-xs text-[#A1A1A6] leading-relaxed">
+                    Enterprise relational schema combined with vector embeddings for semantic job matching and ACID transactions.
+                  </p>
+                </div>
+                <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs font-mono text-[#F5F5F7]">
+                  <div className="flex items-center justify-between"><span>PostgreSQL</span><span className="text-[#86868B]">15 Relational</span></div>
+                  <div className="flex items-center justify-between"><span>pgvector</span><span className="text-[#38BDF8]">Cosine Sim</span></div>
+                  <div className="flex items-center justify-between"><span>ORM Layer</span><span className="text-[#86868B]">SQLAlchemy 2</span></div>
+                  <div className="flex items-center justify-between"><span>Migrations</span><span className="text-[#86868B]">Alembic</span></div>
+                  <div className="flex items-center justify-between"><span>File Storage</span><span className="text-[#30D158]">S3 / Local</span></div>
+                </div>
+              </div>
+
+              {/* Layer 4: Async Processing */}
+              <div className="p-5 rounded-3xl ios-glass border border-white/10 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-[#FF9F0A] bg-[#FF9F0A]/10 px-2 py-0.5 rounded-full">LAYER 04</span>
+                    <Zap className="w-4 h-4 text-[#FF9F0A]" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">Async &amp; Queue</h3>
+                  <p className="text-xs text-[#A1A1A6] leading-relaxed">
+                    Distributed background worker pipeline decoupling heavy resume parsing and email notifications from API requests.
+                  </p>
+                </div>
+                <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs font-mono text-[#F5F5F7]">
+                  <div className="flex items-center justify-between"><span>Redis</span><span className="text-[#86868B]">Broker &amp; Cache</span></div>
+                  <div className="flex items-center justify-between"><span>Celery</span><span className="text-[#86868B]">Worker Pool</span></div>
+                  <div className="flex items-center justify-between"><span>Embedding Jobs</span><span className="text-[#86868B]">Async Celery</span></div>
+                  <div className="flex items-center justify-between"><span>Email Alerts</span><span className="text-[#86868B]">Background Queue</span></div>
+                  <div className="flex items-center justify-between"><span>System Uptime</span><span className="text-[#30D158]">Resilient</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
       ) : (
         /* Fallback About for other projects */
         <section className="p-6 sm:p-8 rounded-3xl ios-glass border border-white/10 space-y-4">
@@ -739,6 +1070,8 @@ export default function ProjectDetailPage({ project, onBack }) {
               ? 'Sole Architect & Full-Stack Engineer'
               : isHindiMate
               ? 'System Architecture, Docker, AWS & Voice'
+              : isTnp
+              ? 'Lead Backend Architect & Schema Designer'
               : 'Lead Engineer'}
           </span>
         </div>
@@ -748,8 +1081,65 @@ export default function ProjectDetailPage({ project, onBack }) {
             ? 'JanSathi was conceived, architected, designed, and engineered entirely end-to-end by me (Raghavendra Waggar). Every single component across the frontend interfaces, backend services, GIS mapping systems, AI agent workflows, and database models was developed by me.'
             : isHindiMate
             ? 'HindiMate was developed collaboratively by a team of seven members under the IBM SkillsBuild Internship Program. My primary contribution was building the efficient workflow by creating the technical architecture connecting frontend and backend, containerizing the project into Docker, and deploying it on AWS EC2 with Nginx.'
+            : isTnp
+            ? 'As Lead Backend Architect, I spearheaded the core system engineering for the TNP Platform: designing the normalized PostgreSQL relational database schema, implementing the deterministic 3-Model Engine System (Eligibility Engine, Institutional Policy Engine, and Placement Workflow Engine), and integrating PostgreSQL + pgvector for semantic candidate matching.'
             : project.myRole}
         </p>
+
+        {isTnp && (
+          <div className="space-y-4">
+            <p className="text-xs sm:text-sm text-[#A1A1A6] leading-relaxed">
+              I designed the foundational backend architecture, established the normalized relational database schema in PostgreSQL with pgvector semantic search, engineered the deterministic 3-Engine pipeline, and built the FastAPI REST gateway with JWT role-based access control.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
+              {[
+                {
+                  title: 'PostgreSQL Relational Schema Design',
+                  detail: 'Architected the normalized 9-entity database schema in PostgreSQL (Users, Students, Companies, Faculty, Drives, Applications, Offers, Programs, Enrollments) with strict foreign key cascading and atomic constraints.',
+                },
+                {
+                  title: 'The Deterministic 3-Model Engine System',
+                  detail: 'Engineered the three business logic evaluation engines in Python: multi-criteria eligibility filtering, institutional policy enforcement (One-Offer & Dream rules), and the drive lifecycle state machine.',
+                },
+                {
+                  title: 'pgvector Semantic Search & Matcher',
+                  detail: 'Integrated the PostgreSQL pgvector extension, embedding generation pipeline, and cosine similarity queries (<=> distance) to match candidate resumes and skill profiles against unstructured corporate Job Descriptions.',
+                },
+                {
+                  title: 'FastAPI RBAC & JWT Middleware',
+                  detail: 'Built the secure API gateway with OAuth2/JWT role-based access control, route guards distinguishing TPO, Recruiter, Faculty, and Student privileges, and SlowAPI rate limiting.',
+                },
+                {
+                  title: 'Celery & Redis Background Pipeline',
+                  detail: 'Configured Redis message broker and Celery asynchronous task workers for offloading bulk resume text extraction, embedding computation, and real-time student broadcast notifications.',
+                },
+                {
+                  title: 'Academic Verification & Audit Trail',
+                  detail: 'Implemented automated synchronization with institutional student databases (CGPA, backlogs, verified attendance), eliminating fraudulent applicant submissions and manual spreadsheet audit loops.',
+                },
+              ].map((item, idx) => (
+                <div key={idx} className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-1.5">
+                  <div className="flex items-center gap-2 text-white font-semibold text-xs">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#0A84FF] shrink-0" />
+                    <span>{item.title}</span>
+                  </div>
+                  <p className="text-xs text-[#86868B] leading-relaxed">{item.detail}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#0c1824] to-[#12141a] border border-[#0A84FF]/25 space-y-3 mt-4">
+              <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#0A84FF]" />
+                The Engineering Takeaway
+              </h3>
+              <p className="text-xs sm:text-sm text-[#E5E5EA] leading-relaxed">
+                TNP exemplifies <strong className="text-white">high-integrity institutional workflow automation</strong>. Rather than building an unverified black box, the platform grounds institutional trust in a deterministic <strong className="text-white">3-Model Engine System</strong> backed by a robust PostgreSQL relational foundation. Integrating <strong className="text-white">pgvector semantic search</strong> elevates the system from standard administrative screening into an intelligent, AI-assisted recruitment powerhouse.
+              </p>
+            </div>
+          </div>
+        )}
 
         {isHindiMate && (
           <div className="space-y-4">
@@ -921,6 +1311,187 @@ export default function ProjectDetailPage({ project, onBack }) {
         </section>
       )}
 
+      {/* 2B. TECHNICAL ARCHITECTURE & ER SCHEMA BLUEPRINTS (FOR TNP) */}
+      {isTnp && (
+        <section className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-white/10">
+            <div>
+              <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
+                System Blueprints &amp; Relational Architecture
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Technical Architecture &amp; Database Schema
+              </h2>
+              <p className="text-xs sm:text-sm text-[#86868B] mt-1">
+                Official blueprints detailing the multi-tier API gateway, 3-Engine Core, pgvector semantic search, and the 9-entity relational database schema.
+              </p>
+            </div>
+
+            {/* Selector Tabs */}
+            <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/40 border border-white/10 shrink-0">
+              <button
+                onClick={() => setActiveTnpBlueprint('architecture')}
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  activeTnpBlueprint === 'architecture'
+                    ? 'bg-[#0A84FF] text-white shadow-md shadow-blue-500/25'
+                    : 'text-[#86868B] hover:text-white'
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>System Architecture</span>
+              </button>
+              <button
+                onClick={() => setActiveTnpBlueprint('er_schema')}
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  activeTnpBlueprint === 'er_schema'
+                    ? 'bg-[#0A84FF] text-white shadow-md shadow-blue-500/25'
+                    : 'text-[#86868B] hover:text-white'
+                }`}
+              >
+                <Database className="w-3.5 h-3.5" />
+                <span>ER Database Schema</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Architecture / ER Schema Frame */}
+          <div className="rounded-3xl ios-glass border border-white/15 overflow-hidden shadow-2xl bg-black/60">
+            <div className="p-4 bg-black/50 border-b border-white/10 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                <span className="ml-2 text-xs font-mono text-[#F5F5F7]">
+                  {activeTnpBlueprint === 'architecture' ? 'TNP_System_Architecture_Blueprint.svg' : 'TNP_Relational_Database_ER_Schema.svg'}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-mono text-[#0A84FF] bg-[#0A84FF]/10 px-2.5 py-0.5 rounded-full border border-[#0A84FF]/20">
+                  {activeTnpBlueprint === 'architecture' ? 'Multi-Tier Pipeline & Engines' : 'PostgreSQL Normalized Relational Model'}
+                </span>
+                <button
+                  onClick={() =>
+                    setSelectedImage(
+                      activeTnpBlueprint === 'architecture'
+                        ? {
+                            title: 'TNP Full-Stack Technical Architecture Blueprint',
+                            category: 'System Architecture Blueprint',
+                            file: '/projects/tnp/architecture.svg',
+                            description:
+                              'Comprehensive multi-tier system architecture detailing Browser Client Tier, Next.js Frontend Tier, FastAPI API Gateway with JWT & Rate Limiting, the 3-Model Engine Core, Celery & Redis Async Tier, PostgreSQL + pgvector Data Tier, and AI Vector Embeddings.'
+                          }
+                        : {
+                            title: 'TNP Relational Database Entity-Relationship (ER) Schema',
+                            category: 'Database Schema Blueprint',
+                            file: '/projects/tnp/er_schema.svg',
+                            description:
+                              'Normalized 9-entity relational schema in PostgreSQL detailing USERS, STUDENTS, COMPANIES, FACULTY, DRIVES, APPLICATIONS, OFFERS, TRAINING_PROGRAMS, and TRAINING_ENROLLMENTS with strict foreign keys and policy constraints.'
+                          }
+                    )
+                  }
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all"
+                >
+                  <Maximize2 className="w-3 h-3" />
+                  <span>Enlarge</span>
+                </button>
+              </div>
+            </div>
+
+            <div
+              onClick={() =>
+                setSelectedImage(
+                  activeTnpBlueprint === 'architecture'
+                    ? {
+                        title: 'TNP Full-Stack Technical Architecture Blueprint',
+                        category: 'System Architecture Blueprint',
+                        file: '/projects/tnp/architecture.svg',
+                        description:
+                          'Comprehensive multi-tier system architecture detailing Browser Client Tier, Next.js Frontend Tier, FastAPI API Gateway with JWT & Rate Limiting, the 3-Model Engine Core, Celery & Redis Async Tier, PostgreSQL + pgvector Data Tier, and AI Vector Embeddings.'
+                      }
+                    : {
+                        title: 'TNP Relational Database Entity-Relationship (ER) Schema',
+                        category: 'Database Schema Blueprint',
+                        file: '/projects/tnp/er_schema.svg',
+                        description:
+                          'Normalized 9-entity relational schema in PostgreSQL detailing USERS, STUDENTS, COMPANIES, FACULTY, DRIVES, APPLICATIONS, OFFERS, TRAINING_PROGRAMS, and TRAINING_ENROLLMENTS with strict foreign keys and policy constraints.'
+                      }
+                )
+              }
+              className="p-4 sm:p-8 cursor-pointer relative flex items-center justify-center bg-black/40 group/arch min-h-[420px]"
+            >
+              <img
+                src={activeTnpBlueprint === 'architecture' ? '/projects/tnp/architecture.svg' : '/projects/tnp/er_schema.svg'}
+                alt={activeTnpBlueprint === 'architecture' ? 'TNP System Architecture Blueprint' : 'TNP ER Database Schema'}
+                className="max-h-[580px] w-auto object-contain rounded-2xl transition-transform group-hover/arch:scale-[1.01]"
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/arch:opacity-100 transition-opacity flex items-center justify-center">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 text-white text-xs font-medium backdrop-blur-md border border-white/20 shadow-xl">
+                  <Maximize2 className="w-4 h-4" />
+                  <span>Click to Inspect Full Blueprint in Lightbox</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 2C. INTERACTIVE SYSTEM SIMULATION & MOCKUPS (FOR TNP) */}
+      {isTnp && (
+        <section className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-white/10">
+            <div>
+              <span className="text-xs font-mono text-[#0A84FF] uppercase tracking-wider block mb-1">
+                Interactive Telemetry &amp; Simulation
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Live Engine Mockups &amp; Visualizers
+              </h2>
+              <p className="text-xs sm:text-sm text-[#86868B] mt-1">
+                Simulated interactive modules demonstrating real-time student eligibility filtering, institutional policy enforcement, and NIRF accreditation telemetry.
+              </p>
+            </div>
+            <span className="text-xs font-mono text-[#30D158] bg-[#30D158]/10 px-3 py-1 rounded-full border border-[#30D158]/20 shrink-0">
+              Deterministic Logic
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Mockup 1: Eligibility Engine */}
+            <div className="space-y-3">
+              <ProjectMockup type="tnp-filter" title="FastAPI Eligibility Screening Engine" />
+              <div className="p-3.5 rounded-2xl bg-black/30 border border-white/5 space-y-1">
+                <div className="text-xs font-bold text-white">Dynamic Cutoff Rule Builder</div>
+                <p className="text-[11px] text-[#86868B] leading-relaxed">
+                  Evaluates multi-variable student criteria (CGPA cutoff &ge; 8.0, 0 active backlogs, department matching) in under 12ms to generate instant interview rosters.
+                </p>
+              </div>
+            </div>
+
+            {/* Mockup 2: Policy Engine */}
+            <div className="space-y-3">
+              <ProjectMockup type="tnp-policy" title="Institutional Policy Enforcement Pipeline" />
+              <div className="p-3.5 rounded-2xl bg-black/30 border border-white/5 space-y-1">
+                <div className="text-xs font-bold text-white">Anti-Hoarding &amp; Dream Rule Gates</div>
+                <p className="text-[11px] text-[#86868B] leading-relaxed">
+                  Automates the One-Offer-One-Student rule. Freezes standard student applications upon offer acceptance while permitting Dream offer upgrades (&ge; 2× CTC).
+                </p>
+              </div>
+            </div>
+
+            {/* Mockup 3: NIRF Analytics */}
+            <div className="space-y-3">
+              <ProjectMockup type="tnp-stats" title="NIRF Accreditation Report Telemetry" />
+              <div className="p-3.5 rounded-2xl bg-black/30 border border-white/5 space-y-1">
+                <div className="text-xs font-bold text-white">Accreditation Telemetry Export</div>
+                <p className="text-[11px] text-[#86868B] leading-relaxed">
+                  Aggregates university placement metrics (89.4% placement rate, ₹28 LPA highest, ₹9.2 LPA average CTC) ready for official NIRF institutional submissions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 3. ACTUAL SCREENSHOTS GALLERY FROM USER PROVIDED DIRECTORY */}
       {(isJanSathi || isHindiMate) && (
         <section className="space-y-6">
@@ -1036,7 +1607,7 @@ export default function ProjectDetailPage({ project, onBack }) {
       )}
 
       {/* 4. IN-BUILT PDF VIEWER SECTION (AS REQUESTED: VIEWED ON WEBSITE WITHOUT EXTERNAL FILE) */}
-      {(isJanSathi || isHindiMate) && (
+      {(isJanSathi || isHindiMate || isTnp) && (
         <section className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-white/10">
             <div>
@@ -1049,7 +1620,9 @@ export default function ProjectDetailPage({ project, onBack }) {
               <p className="text-xs sm:text-sm text-[#86868B] mt-1">
                 {isJanSathi
                   ? 'Read the official Project Build Report and AI-generated Municipal Operations PDF directly inside the website.'
-                  : 'Read the comprehensive 24-page HindiMate Capstone Project Report directly inside the website.'}
+                  : isHindiMate
+                  ? 'Read the comprehensive 24-page HindiMate Capstone Project Report directly inside the website.'
+                  : 'Read the comprehensive TNP Institutional Placement & Training Management Platform Proposal directly inside the website.'}
               </p>
             </div>
 
@@ -1094,7 +1667,9 @@ export default function ProjectDetailPage({ project, onBack }) {
                     ? activePdfTab === 'report'
                       ? 'Jansathi_Project_Report.pdf — Authored by Raghavendra Waggar'
                       : 'Daily_City_Operations_Report_JS-OP-67260.pdf — Gemini AI Engine Export'
-                    : 'HindiMate_Project_Report.pdf — IBM SkillsBuild Capstone Project Report'}
+                    : isHindiMate
+                    ? 'HindiMate_Project_Report.pdf — IBM SkillsBuild Capstone Project Report'
+                    : 'TNP_Project_Proposal.pdf — Institutional Placement & Training Management System Proposal'}
                 </span>
               </div>
 
@@ -1104,7 +1679,9 @@ export default function ProjectDetailPage({ project, onBack }) {
                     ? activePdfTab === 'report'
                       ? '/projects/jansathi/Jansathi_Project_Report.pdf'
                       : '/projects/jansathi/daily_city_operations_sample.pdf'
-                    : '/projects/hindimate/HindiMate_Project_Report.pdf'
+                    : isHindiMate
+                    ? '/projects/hindimate/HindiMate_Project_Report.pdf'
+                    : '/projects/tnp/tnp_project_proposal.pdf'
                 }
                 download
                 className="inline-flex items-center gap-1 text-xs text-[#0A84FF] hover:text-white transition-colors"
@@ -1122,9 +1699,17 @@ export default function ProjectDetailPage({ project, onBack }) {
                     ? activePdfTab === 'report'
                       ? '/projects/jansathi/Jansathi_Project_Report.pdf#toolbar=1&navpanes=0'
                       : '/projects/jansathi/daily_city_operations_sample.pdf#toolbar=1&navpanes=0'
-                    : '/projects/hindimate/HindiMate_Project_Report.pdf#toolbar=1&navpanes=0'
+                    : isHindiMate
+                    ? '/projects/hindimate/HindiMate_Project_Report.pdf#toolbar=1&navpanes=0'
+                    : '/projects/tnp/tnp_project_proposal.pdf#toolbar=1&navpanes=0'
                 }
-                title={isJanSathi ? "JanSathi Embedded PDF Document" : "HindiMate Embedded PDF Document"}
+                title={
+                  isJanSathi
+                    ? "JanSathi Embedded PDF Document"
+                    : isHindiMate
+                    ? "HindiMate Embedded PDF Document"
+                    : "TNP Embedded Proposal PDF Document"
+                }
                 className="w-full h-full border-none"
               />
             </div>

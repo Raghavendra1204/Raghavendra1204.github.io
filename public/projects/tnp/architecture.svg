@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1128.3605666666663 1329.8000000000002" width="1128.3605666666663" height="1329.8000000000002" style="--bg:#1F1F1F;--fg:#CCCCCC;--line:#CCCCCC;--accent:#0078D4;--muted:#CCCCCCCC;--surface:#181818;--border:#CCCCCC;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<g class="subgraph" data-id="Client_Tier_Frontend__Clients" data-label="Client Tier [Frontend / Clients]">
+  <rect x="468.9644999999997" y="40" width="153.978" height="96.9" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="468.9644999999997" y="40" width="153.978" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="480.9644999999997" y="54" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Client Tier [Frontend / Clients]</text>
+</g>
+<g class="subgraph" data-id="Frontend_Tier_Nextjs_Web_Application" data-label="Frontend Tier [Next.js Web Application]">
+  <rect x="40" y="265.20000000000005" width="604.0609999999997" height="96.9" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="40" y="265.20000000000005" width="604.0609999999997" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="52" y="279.20000000000005" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Frontend Tier [Next.js Web Application]</text>
+</g>
+<g class="subgraph" data-id="API_Tier_FastAPI_Application" data-label="API Tier [FastAPI Application]">
+  <rect x="202.64949999999976" y="490.40000000000003" width="757.7439999999999" height="181.8" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="202.64949999999976" y="490.40000000000003" width="757.7439999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="214.64949999999976" y="504.40000000000003" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">API Tier [FastAPI Application]</text>
+</g>
+<g class="subgraph" data-id="Async_Tier_Background_Tasks" data-label="Async Tier [Background Tasks]">
+  <rect x="692.7178999999998" y="800.5" width="257.71799999999996" height="250.1" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="692.7178999999998" y="800.5" width="257.71799999999996" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="704.7178999999998" y="814.5" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Async Tier [Background Tasks]</text>
+</g>
+<g class="subgraph" data-id="Data_Tier_Storage__AI" data-label="Data Tier [Storage &amp; AI]">
+  <rect x="314.042233333333" y="1178.9" width="471.42199999999997" height="110.9" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="314.042233333333" y="1178.9" width="471.42199999999997" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="326.042233333333" y="1192.9" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Data Tier [Storage &amp; AI]</text>
+</g>
+<g class="subgraph" data-id="AI_Tier_AI__ML" data-label="AI Tier [AI &amp; ML]">
+  <rect x="854.3545666666664" y="1178.9" width="234.00599999999994" height="96.9" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="854.3545666666664" y="1178.9" width="234.00599999999994" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="866.3545666666664" y="1192.9" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">AI Tier [AI &amp; ML]</text>
+</g>
+<polyline class="edge" data-from="Browser" data-to="UI" data-style="solid" data-arrow-start="true" data-arrow-end="true" data-label="HTTP/HTTPS" points="545.9534999999997,120.9 545.9534999999997,309.20000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="UI" data-to="API" data-style="solid" data-arrow-start="true" data-arrow-end="true" data-label="REST / JSON" points="545.9534999999997,346.1 545.9534999999997,534.4000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Services" data-to="Postgres" data-style="solid" data-arrow-start="true" data-arrow-end="true" data-label="Read/Write" points="770.7270999999997,656.2 770.7270999999997,782.5 633.7958999999997,782.5 633.7958999999997,1160.9 648.6255666666664,1160.9 648.6255666666663,1222.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Services" data-to="FileStore" data-style="solid" data-arrow-start="true" data-arrow-end="true" data-label="Upload/Download" points="712.8382999999998,656.2 712.8382999999998,770.5 487.6872333333331,770.5 487.6872333333331,1160.9 445.124233333333,1160.9 445.124233333333,1222.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Services" data-to="Redis" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Queue Task" points="828.6158999999998,656.2 828.6158999999998,714.2 821.5768999999998,714.2 821.5768999999998,844.5" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Celery" data-to="Postgres" data-style="solid" data-arrow-start="true" data-arrow-end="true" data-label="Extract Text/Update" points="798.7772333333331,1034.6 798.7772333333331,1092.6 761.3258999999997,1092.6 761.3258999999997,1160.9 709.0448999999996,1160.9 709.0448999999996,1222.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Celery" data-to="LLM" data-style="solid" data-arrow-start="true" data-arrow-end="true" data-label="Generate Embeddings" points="844.3765666666663,1034.6 844.3765666666663,1092.6 881.8278999999998,1092.6 881.8278999999998,1160.9 937.6898999999997,1160.9 937.6898999999997,1222.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Services" data-to="LLM" data-style="solid" data-arrow-start="true" data-arrow-end="true" data-label="Semantic Search" points="886.5046999999997,656.2 886.5046999999997,782.5 1023.4358999999997,782.5 1023.4358999999997,1160.9 1005.0252333333331,1160.9 1005.0252333333331,1222.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="API" data-to="Auth" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="545.9534999999997,571.3000000000001 545.9534999999997,595.3000000000001 327.80349999999976,595.3000000000001 327.80349999999976,619.3000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="API" data-to="Limiter" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="545.9534999999997,571.3000000000001 545.9534999999997,595.3000000000001 545.9534999999997,595.3000000000001 545.9534999999997,619.3000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="API" data-to="Services" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="545.9534999999997,571.3000000000001 545.9534999999997,595.3000000000001 799.6714999999997,595.3000000000001 799.6714999999997,619.3000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Redis" data-to="Celery" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Consume Task" points="821.5768999999998,881.4 821.5768999999998,997.7" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="Browser" data-to="UI" data-label="HTTP/HTTPS">
+  <rect x="503.4534999999997" y="185.9" width="84.772" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="545.8394999999997" y="201.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">HTTP/HTTPS</text>
+</g>
+<g class="edge-label" data-from="UI" data-to="API" data-label="REST / JSON">
+  <rect x="504.9534999999998" y="411.1" width="81.208" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="545.5574999999998" y="426.25" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">REST / JSON</text>
+</g>
+<g class="edge-label" data-from="Services" data-to="Postgres" data-label="Read/Write">
+  <rect x="598.7958999999997" y="1099.6" width="69.92200000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="633.7568999999997" y="1114.75" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Read/Write</text>
+</g>
+<g class="edge-label" data-from="Services" data-to="FileStore" data-label="Upload/Download">
+  <rect x="437.1872333333331" y="1099.6" width="100.21600000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="487.2952333333331" y="1114.75" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Upload/Download</text>
+</g>
+<g class="edge-label" data-from="Services" data-to="Redis" data-label="Queue Task">
+  <rect x="783.5768999999998" y="721.2" width="75.268" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="821.2108999999998" y="736.35" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Queue Task</text>
+</g>
+<g class="edge-label" data-from="Celery" data-to="Postgres" data-label="Extract Text/Update">
+  <rect x="705.3258999999997" y="1099.6" width="111.50200000000002" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="761.0768999999997" y="1114.75" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Extract Text/Update</text>
+</g>
+<g class="edge-label" data-from="Celery" data-to="LLM" data-label="Generate Embeddings">
+  <rect x="820.8278999999998" y="1099.6" width="121.60000000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="881.6278999999997" y="1114.75" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Generate Embeddings</text>
+</g>
+<g class="edge-label" data-from="Services" data-to="LLM" data-label="Semantic Search">
+  <rect x="974.4358999999997" y="1099.6" width="97.84000000000003" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1023.3558999999998" y="1114.75" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Semantic Search</text>
+</g>
+<g class="edge-label" data-from="Redis" data-to="Celery" data-label="Consume Task">
+  <rect x="777.0768999999997" y="924.4" width="88.33600000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="821.2448999999997" y="939.55" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Consume Task</text>
+</g>
+<g class="node" data-id="Browser" data-label="Web Browser" data-shape="rectangle">
+  <rect x="484.9644999999997" y="84" width="121.978" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="545.9534999999997" y="102.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Web Browser</text>
+</g>
+<g class="node" data-id="UI" data-label="Next.js App Router UI" data-shape="rectangle">
+  <rect x="463.8459999999998" y="309.20000000000005" width="164.21499999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="545.9534999999997" y="327.65000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Next.js App Router UI</text>
+</g>
+<g class="node" data-id="RBAC_UI" data-label="Role-Based Dashboards: TPO, Student, Recruiter, Faculty" data-shape="rectangle">
+  <rect x="56" y="309.20000000000005" width="379.8459999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="245.9229999999999" y="327.65000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Role-Based Dashboards: TPO, Student, Recruiter, Faculty</text>
+</g>
+<g class="node" data-id="API" data-label="FastAPI Gateway / Routers" data-shape="rectangle">
+  <rect x="447.17349999999976" y="534.4000000000001" width="197.55999999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="545.9534999999997" y="552.8500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">FastAPI Gateway / Routers</text>
+</g>
+<g class="node" data-id="Auth" data-label="JWT Auth &amp; RBAC Middleware" data-shape="rectangle">
+  <rect x="218.64949999999976" y="619.3000000000001" width="218.30799999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="327.80349999999976" y="637.7500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">JWT Auth &amp; RBAC Middleware</text>
+</g>
+<g class="node" data-id="Limiter" data-label="SlowAPI Rate Limiter" data-shape="rectangle">
+  <rect x="464.95749999999975" y="619.3000000000001" width="161.992" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="545.9534999999997" y="637.7500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">SlowAPI Rate Limiter</text>
+</g>
+<g class="node" data-id="Services" data-label="Business Logic: Eligibility, Policy, AI Match" data-shape="rectangle">
+  <rect x="654.9494999999997" y="619.3000000000001" width="289.4439999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="799.6714999999997" y="637.7500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Business Logic: Eligibility, Policy, AI Match</text>
+</g>
+<g class="node" data-id="Celery" data-label="Celery Workers" data-shape="rectangle">
+  <rect x="753.1778999999998" y="997.7" width="136.798" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="821.5768999999998" y="1016.1500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Celery Workers</text>
+</g>
+<g class="node" data-id="Redis" data-label="Redis Message Broker / Cache" data-shape="rectangle">
+  <rect x="708.7178999999998" y="844.5" width="225.718" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="821.5768999999998" y="862.95" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Redis Message Broker / Cache</text>
+</g>
+<g class="node" data-id="Postgres" data-label="PostgreSQL + pgvector" data-shape="cylinder">
+  <rect x="588.206233333333" y="1229.9" width="181.25799999999998" height="36.900000000000006" fill="var(--_node-fill)" stroke="none" />
+  <line x1="588.206233333333" y1="1229.9" x2="588.206233333333" y2="1266.8000000000002" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <line x1="769.4642333333329" y1="1229.9" x2="769.4642333333329" y2="1266.8000000000002" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="678.835233333333" cy="1266.8000000000002" rx="90.62899999999999" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="678.835233333333" cy="1229.9" rx="90.62899999999999" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="678.835233333333" y="1248.3500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">PostgreSQL + pgvector</text>
+</g>
+<g class="node" data-id="FileStore" data-label="Local/S3 File Storage: Resumes" data-shape="rectangle">
+  <rect x="330.042233333333" y="1222.9" width="230.164" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="445.124233333333" y="1241.3500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Local/S3 File Storage: Resumes</text>
+</g>
+<g class="node" data-id="LLM" data-label="OpenAI / Local Embeddings" data-shape="rectangle">
+  <rect x="870.3545666666664" y="1222.9" width="202.00599999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="971.3575666666663" y="1241.3500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">OpenAI / Local Embeddings</text>
+</g>
+</svg>
